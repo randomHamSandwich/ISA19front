@@ -1,0 +1,8 @@
+<p>klinika-list works!</p>
+
+
+<div *ngFor="let klinika of klinike | async" style="width: 300px;">
+  <app-klinika [klinika]='klinika'></app-klinika>
+</div>
+
+

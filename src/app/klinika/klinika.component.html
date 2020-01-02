@@ -1,0 +1,65 @@
+<p>klinika works!</p>
+
+<div *ngIf="klinika">
+  <!-- <div class="bg-success">
+    <div>
+      <label>Nazi: </label> {{klinika.naziv}}
+    </div>
+    <div>
+      <label>Ocena: </label> {{klinika.ocenaKlinike}}
+    </div>
+    <div>
+      <label>Ulica: </label> {{klinika.ulica}}
+    </div>
+    <div>
+      <label>Broj ulice: </label> {{klinika.brojUlice}}
+    </div>
+    <div>
+      <label>Grad: </label> {{klinika.grad}}
+    </div>
+    <div>
+      <label>Drzava: </label> {{klinika.drzava}}
+    </div>
+    <div>
+      <label>Opis: </label> {{klinika.opis}}
+    </div>
+    <button class="btn btn-success">Zakazi pregled u {{klinika.naziv}}</button>
+  </div> -->
+
+    
+    <table class="table table-dark bg-success ">
+      <thead>
+      <tr>
+        <th>Naziv</th>
+        <th>Ocena</th>
+        <th>Ulica</th>
+        <th>Broj ulice</th>
+        <th>Grad</th>
+        <th>Drzava</th>
+        <th>Opis</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{klinika.naziv}}</td>
+        <td>{{klinika.ocenaKlinike}}</td>
+        <td>{{klinika.ulica}}</td>
+        <td>{{klinika.brojUlice}}</td>
+        <td>{{klinika.grad}}</td>
+        <td>{{klinika.drzava}}</td>
+        <td>{{klinika.opis}}</td>
+      </tr>
+      <tr>
+        <td colspan="7" align="left">
+          <button class="btn btn-success">Zakazi pregled u {{klinika.naziv}}</button>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+
+    
+
+   
+
+    <hr />
+  </div>
