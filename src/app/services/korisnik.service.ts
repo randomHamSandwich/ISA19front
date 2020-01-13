@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 
 
 @Injectable({
@@ -28,4 +29,10 @@ import { Observable } from 'rxjs';
       return this.http.put(this.korisnikUrl+'/pass/'+email,value)
     }
 
+     public getLekarSaSpec(id: string, spec: string){
+      // return this.http.get(this.korisnikUrl+id+'/spec?'+spec);
+      
+      const params = new HttpParams().set('spec', spec);
+      return this.http.get(this.korisnikUrl+'/'+id,{params})
+    }
   }

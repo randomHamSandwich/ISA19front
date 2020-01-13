@@ -12,20 +12,23 @@ export class PacijentUpdateComponent implements OnInit {
   updateInfo: UpdatePacijentInfo;
   @Input() korisnik: Korisnik
   changePassword : boolean;
+  errorMessage :string;
+  isUpdateFailed :boolean;
 
   constructor(private korisnikService: KorisnikService) { }
 
   ngOnInit() {
     this.form.name=this.korisnik.ime;
     this.form.surname=this.korisnik.prezime;
-    // this.form.username=this.korisnik.username;
     this.form.streetName=this.korisnik.ulica;
     this.form.streetNumber=this.korisnik.brojUlice;
     this.form.contry=this.korisnik.drzava;
     this.form.phoneNumber=this.korisnik.brojTelefona;
     this.form.city = this.korisnik.grad;
-    // this.form.password=this.korisnik.password;
     this.changePassword = false;
+    this.errorMessage="";
+    this.isUpdateFailed=false;
+    
   }
 
   onChangePassword(){
@@ -65,9 +68,17 @@ export class PacijentUpdateComponent implements OnInit {
         data => {
           console.log(data);
           this.korisnik = data as Korisnik;
+          this.isUpdateFailed = false;
+          window.location.reload();
         },
-        error => console.log(error));
-        window.location.reload();
+        error => {
+          console.log(error);
+          this.errorMessage = error.error.message;
+          this.isUpdateFailed= true;
+        
+        }
+        );
+        
 
     }
 }

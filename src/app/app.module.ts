@@ -18,6 +18,9 @@ import { KlinikaComponent } from './klinika/klinika.component';
 import { KlinikaListComponent } from './klinika-list/klinika-list.component';
 import { PacijentUpdateComponent } from './pacijent-update/pacijent-update.component';
 import { UpdatePasswordComponent } from './pacijent-update/update-password/update-password.component';
+import { LekarComponent } from './lekar/lekar.component';
+import { LekarListComponent } from './lekar-list/lekar-list.component';
+
 
 
 @NgModule({
@@ -33,6 +36,9 @@ import { UpdatePasswordComponent } from './pacijent-update/update-password/updat
     KlinikaListComponent,
     PacijentUpdateComponent,
     UpdatePasswordComponent,
+    LekarComponent,
+    LekarListComponent,
+
 
     
   ],

@@ -1,8 +1,47 @@
-<p>klinika-list works!</p>
+<!-- <p>klinika-list works!</p>
 
 
 <div *ngFor="let klinika of klinike | async" style="width: 300px;">
   <app-klinika [klinika]='klinika'></app-klinika>
 </div>
 
+ -->
+ <!-- <div *ngIf="info.token; else loggedOut"> -->
+  <h1>TESTING</h1>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  
+    <div class="form-group">
+    <label for="spec">Specijalizacija:</label>
+    <select class="form-control" name="spec"  [(ngModel)]="form.spec" #name="ngModel" >
+      <option *ngFor="let s of specs " [value]="s.name">
+        {{s.name}}
+      </option>
+    </select>
+  </div>
 
+  <div class="form-group">
+    <button class="btn btn-primary">Pretrazi</button>
+    <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+      Signup failed!<br/>{{errorMessage}}
+    </div>
+  </div>
+</form>
+
+
+
+
+    <div *ngFor="let klinika of klinike | async" style="width: 300px;">
+        
+        <div *ngIf="TEST(klinika)">
+          <app-klinika [klinika]='klinika'></app-klinika>
+          
+        </div>
+
+    </div>
+
+
+
+    
+<!-- <ng-template #loggedOut>
+  Please login.
+</ng-template> -->

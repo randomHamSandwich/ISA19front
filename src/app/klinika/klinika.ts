@@ -1,4 +1,5 @@
 export class Klinika {
+    idKlinika: string;
     naziv: string;
     ulica: string;
     brojUlice: string;

@@ -1,7 +1,7 @@
 <p>register works!</p>
 
 <div *ngIf="isSignedUp; else signupForm">
-    Your registration is successful. Please login!
+    Your registration is successful. Acitvate your account by email then you can log in!
   </div>
   
   <ng-template #signupForm>
@@ -25,19 +25,7 @@
               <div *ngIf="surname.errors.required">surname is required</div>
             </div>
           </div>
-<!--   
 
-
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
-            required />
-          <div *ngIf="f.submitted && username.invalid">
-            <div *ngIf="username.errors.required">Username is required</div>
-          </div>
-        </div>
-
- -->
 
         <div class="form-group">
           <label for="email">Email</label>

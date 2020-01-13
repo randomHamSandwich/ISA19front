@@ -13,6 +13,11 @@ export class UpdatePasswordComponent implements OnInit {
   form: any = {};
   updateInfo: UpdatePacijentInfo;
   @Input() korisnik: Korisnik
+
+
+  isChangedPasswordFailed = false;
+  errorMessage :string= '';
+
   constructor(private korisnikService: KorisnikService) { }
 
   ngOnInit() {
@@ -21,8 +26,9 @@ export class UpdatePasswordComponent implements OnInit {
   onSubmit() {
     console.log(this.form);
     if(this.form.password !== this.form.passwordSecond){
-      console.log("retyped new password is not the same");
-      
+      console.log("password's are not the same");
+      this.isChangedPasswordFailed= true;
+      this.errorMessage="password's are not the same";
     } 
       else
       {
@@ -51,9 +57,18 @@ export class UpdatePasswordComponent implements OnInit {
             data => {
               console.log(data);
               this.korisnik = data as Korisnik;
+              this.isChangedPasswordFailed=false;
+              window.location.reload();
             },
-            error => console.log(error));
-            // window.location.reload();
+            error => {
+              console.log(error);
+              this.errorMessage = error.error.message;
+              this.isChangedPasswordFailed= true;
+            }
+            
+            );
+            
+
       }
     }
 

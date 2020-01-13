@@ -16,6 +16,10 @@
       <li *ngIf="!authority" class="nav-item">
         <a class="nav-link" routerLink="auth/login">Login</a>
       </li>
+      <li *ngIf="authority === 'pacijent'" class="nav-item">
+        <!-- <button class="btn btn-secondary" (click)="logout()">Logout</button> -->
+        <a href="http://127.0.0.1:4200/home" (click)="logout()">Logout</a>
+      </li>
     </ul>
   </div>
 </nav>

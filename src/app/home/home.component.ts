@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     };
     this.reloadData();
   }
-
+// TODO stavi u top level crnu komponentu
   logout() {
     this.token.signOut();
     window.location.reload();
