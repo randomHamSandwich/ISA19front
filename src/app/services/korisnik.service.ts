@@ -35,4 +35,10 @@ import { Observable } from 'rxjs';
       const params = new HttpParams().set('spec', spec);
       return this.http.get(this.korisnikUrl+'/'+id,{params})
     }
+
+    public getLekariKlinike(idKlinike : string): Observable<any>{
+      const params = new HttpParams().set('idKlinike', idKlinike);
+      return this.http.get(this.korisnikUrl+'/'+'klinike',{params});
+    }
+
   }

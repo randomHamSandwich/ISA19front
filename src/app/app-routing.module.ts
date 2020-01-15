@@ -9,6 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 import { PacijentComponent} from './pacijent/pacijent.component';
 import { KlinikaListComponent} from './klinika-list/klinika-list.component';
 import { PacijentUpdateComponent } from './pacijent-update/pacijent-update.component'
+import { LekarListComponent } from'./lekar-list/lekar-list.component'
 
 const routes: Routes = [
     {
@@ -45,6 +46,11 @@ const routes: Routes = [
     {
         path: 'pacijentupdate',
         component: PacijentUpdateComponent
+
+    },
+    {
+        path: 'lekarlist',
+        component: LekarListComponent
 
     },
     {

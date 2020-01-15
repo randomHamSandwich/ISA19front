@@ -17,7 +17,17 @@ export class KlinikaListComponent implements OnInit {
   klinikaFilter: KlinikFilter;
   form: any={};
   specs : Specialization[]=[
-    {id: 1, name: ' '},{id : 2, name: 'NEUROLOGIJA'}
+    {id: 1, name: 'asdasdsd'},
+    {id : 2, name: 'NEUROLOGIJA'},
+    {id : 3, name: 'OFTALMOLOGIJA'},
+    {id : 4, name: 'INFEKTOLOGIJA'}
+    
+  ]
+  nesto:any[]=[
+    {id: 1, name: 'asdasdsd', s: false},
+    {id : 2, name: 'NEUROLOGIJA', s: false},
+    {id: 3, name: 'daj mi ovaj kupus', s: true},
+    {id : 4, name: 'NEUROLOGIJA', s: false}
   ]
 
 
@@ -25,12 +35,13 @@ export class KlinikaListComponent implements OnInit {
 
   ngOnInit() {
     this.reloadData();
+    // this.form.spec= ' ';
   }
 
   reloadData() {
   //jedan servis radi u zavisnosti dali ima parametre dobaflja klinike
   
-      this.klinike = this.klinikaService.getKlinikaList(''); 
+      this.klinike = this.klinikaService.getKlinikaList({spec : ' ' ,date: ' ' }); 
 
   }
 
@@ -39,10 +50,10 @@ export class KlinikaListComponent implements OnInit {
     // if(this.form.spec === ' '){
     //   this.klinikaFilter.spec='';  
     // }else{
-      this.klinikaFilter = new KlinikFilter(this.form.spec) ;
+      this.klinikaFilter = new KlinikFilter(this.form.spec, this.form.date) ;
     
       console.log(this.klinikaFilter);
-      this.klinike = this.klinikaService.getKlinikaList( this.klinikaFilter.spec); 
+      this.klinike = this.klinikaService.getKlinikaList( this.klinikaFilter); 
 
   }
 

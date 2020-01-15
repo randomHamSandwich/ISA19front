@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { KlinikFilter } from '../klinika-list/klinika-filter';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,14 @@ export class KlinikaService {
   constructor(private http: HttpClient) { }
 
 
-  public getKlinikaList(spec: string): Observable<any> {
+  public getKlinikaList(filter: KlinikFilter): Observable<any> {
+    if(filter == null || filter.spec==null){
+      const params = new HttpParams().set('spec', '');
+      return this.http.get(this.klinikaUrl+'/all', {params});
+    }
     
-    if(spec.length!=0 && spec!=' '){
-      const params = new HttpParams().set('spec', spec);
+    if(filter.spec.length!=0 && filter.spec!=' '){
+      const params = new HttpParams().set('spec', filter.spec);
       return this.http.get(this.klinikaUrl+'/all', {params});
     }else{
       const params = new HttpParams().set('spec', '');

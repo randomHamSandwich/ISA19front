@@ -11,19 +11,43 @@
   <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
   
     <div class="form-group">
-    <label for="spec">Specijalizacija:</label>
-    <select class="form-control" name="spec"  [(ngModel)]="form.spec" #name="ngModel" >
-      <option *ngFor="let s of specs " [value]="s.name">
-        {{s.name}}
-      </option>
-    </select>
+      <label for="spec">Specijalizacija:</label>
+      <select class="form-control" name="spec"  [(ngModel)]="form.spec" #spec="ngModel" >
+
+        <option *ngFor="let s of specs " [value]="s.name"    [selected] = "true" ng-selected="true">
+          {{s.name}}
+        </option>
+
+      </select>
+      <!-- <div *ngIf="spec.errors.required">Email is required</div> -->
+     </div>
+
+  <!-- <div class="form-group">
+    <label for="date">date</label>
+    <input id="date" name="date" [(ngModel)]="form.date"
+            type="text" bsDatepicker class="form-control" />
+  </div>
+
+ -->
+  <div class="row">
+    <div class="col-xs-12 col-12 col-md-4 form-group">
+      <input type="text"
+             placeholder="Datepicker"
+             class="form-control"
+             bsDatepicker
+             name = date
+             [(ngModel)]="form.date" #name="ngModel"
+
+             [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY'  }"
+             
+             >
+    </div>
+
   </div>
 
   <div class="form-group">
     <button class="btn btn-primary">Pretrazi</button>
-    <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
-      Signup failed!<br/>{{errorMessage}}
-    </div>
+
   </div>
 </form>
 
