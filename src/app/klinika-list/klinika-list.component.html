@@ -6,21 +6,21 @@
 </div>
 
  -->
- <!-- <div *ngIf="info.token; else loggedOut"> -->
-  <h1>TESTING</h1>
-  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-  
-    <div class="form-group">
-      <label for="spec">Specijalizacija:</label>
-      <select class="form-control" name="spec"  [(ngModel)]="form.spec" #spec="ngModel" >
+<!-- <div *ngIf="info.token; else loggedOut"> -->
+<h1>TESTING</h1>
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
 
-        <option *ngFor="let s of specs " [value]="s.name"    [selected] = "true" ng-selected="true">
-          {{s.name}}
-        </option>
+  <div class="form-group">
+    <label for="spec">Specijalizacija:</label>
+    <select class="form-control" name="spec" [(ngModel)]="form.spec" #spec="ngModel">
 
-      </select>
-      <!-- <div *ngIf="spec.errors.required">Email is required</div> -->
-     </div>
+      <option *ngFor="let s of specs " [value]="s.name" [selected]="true" ng-selected="true">
+        {{s.name}}
+      </option>
+
+    </select>
+    <!-- <div *ngIf="spec.errors.required">Email is required</div> -->
+  </div>
 
   <!-- <div class="form-group">
     <label for="date">date</label>
@@ -31,16 +31,8 @@
  -->
   <div class="row">
     <div class="col-xs-12 col-12 col-md-4 form-group">
-      <input type="text"
-             placeholder="Datepicker"
-             class="form-control"
-             bsDatepicker
-             name = date
-             [(ngModel)]="form.date" #name="ngModel"
-
-             [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY'  }"
-             
-             >
+      <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker name=date [(ngModel)]="form.date"
+        #name="ngModel" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY'  }">
     </div>
 
   </div>
@@ -54,18 +46,18 @@
 
 
 
-    <div *ngFor="let klinika of klinike | async" style="width: 300px;">
-        
-        <div *ngIf="TEST(klinika)">
-          <app-klinika [klinika]='klinika'></app-klinika>
-          
-        </div>
+<div *ngFor="let klinika of klinike | async" style="width: 300px;">
 
-    </div>
+  <div *ngIf="TEST(klinika)">
+    <app-klinika [klinika]='klinika' [klinikaFilter]='klinikaFilter'></app-klinika>
+
+  </div>
+
+</div>
 
 
 
-    
+
 <!-- <ng-template #loggedOut>
   Please login.
 </ng-template> -->

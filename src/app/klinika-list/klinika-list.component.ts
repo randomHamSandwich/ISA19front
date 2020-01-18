@@ -15,21 +15,14 @@ export class KlinikaListComponent implements OnInit {
 
   klinike: Observable<Klinika[]>;
   klinikaFilter: KlinikFilter;
-  form: any={};
-  specs : Specialization[]=[
-    {id: 1, name: 'asdasdsd'},
-    {id : 2, name: 'NEUROLOGIJA'},
-    {id : 3, name: 'OFTALMOLOGIJA'},
-    {id : 4, name: 'INFEKTOLOGIJA'}
-    
-  ]
-  nesto:any[]=[
-    {id: 1, name: 'asdasdsd', s: false},
-    {id : 2, name: 'NEUROLOGIJA', s: false},
-    {id: 3, name: 'daj mi ovaj kupus', s: true},
-    {id : 4, name: 'NEUROLOGIJA', s: false}
-  ]
+  form: any = {};
+  specs: Specialization[] = [
+    { id: 1, name: ' ' },
+    { id: 2, name: 'NEUROLOGIJA' },
+    { id: 3, name: 'OFTALMOLOGIJA' },
+    { id: 4, name: 'INFEKTOLOGIJA' }
 
+  ]
 
   constructor(private klinikaService: KlinikaService, private korisnikService: KorisnikService) { }
 
@@ -39,9 +32,9 @@ export class KlinikaListComponent implements OnInit {
   }
 
   reloadData() {
-  //jedan servis radi u zavisnosti dali ima parametre dobaflja klinike
-  
-      this.klinike = this.klinikaService.getKlinikaList({spec : ' ' ,date: ' ' }); 
+    //jedan servis radi u zavisnosti dali ima parametre dobaflja klinike
+
+    this.klinike = this.klinikaService.getKlinikaList({ spec: ' ', date: ' ' });
 
   }
 
@@ -50,22 +43,21 @@ export class KlinikaListComponent implements OnInit {
     // if(this.form.spec === ' '){
     //   this.klinikaFilter.spec='';  
     // }else{
-      this.klinikaFilter = new KlinikFilter(this.form.spec, this.form.date) ;
-    
-      console.log(this.klinikaFilter);
-      this.klinike = this.klinikaService.getKlinikaList( this.klinikaFilter); 
+    this.klinikaFilter = new KlinikFilter(this.form.spec, this.form.date);
+    console.log(this.klinikaFilter);
+    this.klinike = this.klinikaService.getKlinikaList(this.klinikaFilter);
 
   }
 
 
-  TEST(k :Klinika): boolean{
+  TEST(k: Klinika): boolean {
     // this.korisnikService.getLekariSaSpecijalizacijom
-return true;
+    return true;
 
-    if(k.idKlinika=='1'){
+    if (k.idKlinika == '1') {
       return true;
-    }else
-    return false;
+    } else
+      return false;
   }
 
 }

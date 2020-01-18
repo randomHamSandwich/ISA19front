@@ -42,6 +42,7 @@ export class KlinikaService {
   //   return this.http.get(this.klinikaUrl+'/spec',{params});
   // }
 
+  //not used
   public getKlinika(idKlinika: number): Observable<any> {
     // console.log('front poslao back stuffffffffffffffffffffff ' + this.korisnikUrl+ '/' +email);
       return this.http.get(this.klinikaUrl+'/'+idKlinika);

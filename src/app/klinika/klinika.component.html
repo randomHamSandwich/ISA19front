@@ -26,9 +26,9 @@
     <button class="btn btn-success">Zakazi pregled u {{klinika.naziv}}</button>
   </div> -->
 
-    
-    <table class="table table-dark bg-success ">
-      <thead>
+
+  <table class="table table-dark bg-success ">
+    <thead>
       <tr>
         <th>Naziv</th>
         <th>Ocena</th>
@@ -52,17 +52,26 @@
       <tr>
         <td colspan="7" align="left">
           <!-- <button  class="btn btn-success">Zakazi pregled u {{klinika.naziv}}</button> -->
-          <a href="/home">
-            <button  class="btn btn-success">Zakazi pregled u {{klinika.naziv}}</button>
+
+          <!-- <a href="/lekarlist?animal=krompir">
+            <button class="btn btn-success">Zakazi pregled u xxxxxxxxxxxxxxxx{{klinika.naziv}}</button>
           </a>
+           -->
+          <form name="form" (ngSubmit)="onThisSubmit()" #f="ngForm">
+
+            <div class="form-group">
+              <button class="btn btn-success">Zakazi pregled u {{klinika.naziv}}</button>
+            </div>
+          </form>
+
         </td>
       </tr>
     </tbody>
-    </table>
+  </table>
 
-    
 
-   
 
-    <hr />
-  </div>
+
+
+  <hr />
+</div>

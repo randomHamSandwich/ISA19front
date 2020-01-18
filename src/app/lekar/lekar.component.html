@@ -1,1 +1,37 @@
-<p>lekar works!</p>
+<!-- <p>lekar works!</p>
+
+{{lekar.ime}} -->
+
+
+<table class="table table-dark bg-info ">
+    <thead>
+    <tr>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>specijalizacija</th>
+      <th>Klinika</th>
+      <th>Ocena</th>
+      <th>Cena pregleda</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{lekar.ime}}</td>
+      <td>{{lekar.prezime}}</td>
+      <td>{{lekar.specijalizacija}}</td>
+      <td>{{lekar.klinikaNaziv}}</td>
+      <td>{{lekar.ocenaLekar}}</td>
+      <td>cena</td>
+
+    </tr>
+    <tr>
+      <td colspan="7" align="left">
+        <!-- <button  class="btn btn-success">Zakazi pregled u {{klinika.naziv}}</button> -->
+        <a href="/lekarlist">
+          <button  class="btn btn-info">Zakazi pregled </button>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+  </table>

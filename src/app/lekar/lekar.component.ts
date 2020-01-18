@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Lekar } from './lekar';
 
 @Component({
   selector: 'app-lekar',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lekar.component.css']
 })
 export class LekarComponent implements OnInit {
-
+  
+  @Input() lekar: Lekar;
   constructor() { }
 
   ngOnInit() {
