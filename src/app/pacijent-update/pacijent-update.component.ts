@@ -2,6 +2,7 @@ import { Component, OnInit,Input } from '@angular/core';
 import {  UpdatePacijentInfo } from './udate-pacient-info';
 import { Korisnik } from '../home/korisnik';
 import { KorisnikService } from '../services/korisnik.service';
+import { TokenStorageService } from '../auth/token-storage.service';
 @Component({
   selector: 'app-pacijent-update',
   templateUrl: './pacijent-update.component.html',
@@ -15,9 +16,23 @@ export class PacijentUpdateComponent implements OnInit {
   errorMessage :string;
   isUpdateFailed :boolean;
 
-  constructor(private korisnikService: KorisnikService) { }
+  info: {
+    token: any;
+    username: any;
+    authorities: string[];
+    idKorisnik: any
+  }
+  constructor(private token: TokenStorageService,private korisnikService: KorisnikService) { }
 
   ngOnInit() {
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername(),
+      authorities: this.token.getAuthorities(),
+      idKorisnik : this.token.getIdKorisnik()
+      
+    };
+    if(this.isPacijent()){
     this.form.name=this.korisnik.ime;
     this.form.surname=this.korisnik.prezime;
     this.form.streetName=this.korisnik.ulica;
@@ -28,12 +43,21 @@ export class PacijentUpdateComponent implements OnInit {
     this.changePassword = false;
     this.errorMessage="";
     this.isUpdateFailed=false;
-    
+    }
   }
 
   onChangePassword(){
     this.changePassword = !this.changePassword;
   }
+  isPacijent() :boolean{
+    console.log('xxxxxxxxxxxxxxxxxxxxxxxAAAAAAAAAAAAAAAA'+this.info.authorities);
+    if(this.info.authorities.includes("PACIJENT")){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 
   onSubmit() {
     console.log(this.form);

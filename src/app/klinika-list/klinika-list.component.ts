@@ -21,7 +21,7 @@ export class KlinikaListComponent implements OnInit {
   info: {
     token: any;
     username: any;
-    authorities: any;
+    authorities: string[];
     idKorisnik: any
   }
   specs: Specialization[] = [
@@ -65,10 +65,17 @@ export class KlinikaListComponent implements OnInit {
   }
 
 
-  TEST(k: Klinika): boolean {
-    // this.korisnikService.getLekariSaSpecijalizacijom
-    return true;
+  // TEST(k: Klinika): boolean {
+  //   // this.korisnikService.getLekariSaSpecijalizacijom
+  //   return true;
+  // }
 
+  isPacijent() :boolean{
+    if(this.info.authorities.includes("PACIJENT")){
+      return true;
+    }else{
+      return false;
+    }
   }
 
 }

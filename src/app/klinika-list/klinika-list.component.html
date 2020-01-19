@@ -10,7 +10,7 @@
 
 <!-- <div *ngIf="authority != 'pacijent'" ; else loggedOut"> -->
 
-<div *ngIf="info.authority === 'pacijent'; else loggedOut">
+<div *ngIf="isPacijent(); else loggedOut">
 
   <h1>TESTING</h1>
   <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
@@ -50,10 +50,9 @@
 
   <div *ngFor="let klinika of klinike | async" style="width: 300px;">
 
-    <div *ngIf="TEST(klinika)">
-      <app-klinika [klinika]='klinika' [klinikaFilter]='klinikaFilter'></app-klinika>
+    <app-klinika [klinika]='klinika' [klinikaFilter]='klinikaFilter'></app-klinika>
 
-    </div>
+
 
   </div>
 
@@ -62,4 +61,11 @@
 
 <ng-template #loggedOut>
   Please login.
+
+  <!-- <strong>Username:</strong> {{info.username}}<br />
+  <strong>Roles:</strong> {{info.authorities}}<br />
+  <strong>Token:</strong> {{info.token}}. <br />
+  <strong>IdKorisnik:</strong> {{info.idKorisnik}}. <br />
+  <strong>Authorities</strong> "{{info.authorities}}"" -->
+
 </ng-template>

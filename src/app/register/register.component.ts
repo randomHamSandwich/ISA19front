@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../auth/auth.service';
 import { SignUpInfo } from '../auth/signup-info';
+import { TokenStorageService } from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-register',
@@ -14,12 +15,27 @@ export class RegisterComponent implements OnInit {
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
+  info: {
+    token: any;
+    username: any;
+    authorities: string[];
+    idKorisnik: any
+  }
 
-  constructor(private authService: AuthService) { }
+  constructor(private token :TokenStorageService,private authService: AuthService) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername(),
+      authorities: this.token.getAuthorities(),
+      idKorisnik : this.token.getIdKorisnik()
+      
+    };
+  }
 
   onSubmit() {
+    
     console.log(this.form);
 
     this.signupInfo = new SignUpInfo(
@@ -50,5 +66,12 @@ export class RegisterComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     );
+  }
+  isPacijent() :boolean{
+    if(this.info.authorities.includes("PACIJENT")){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

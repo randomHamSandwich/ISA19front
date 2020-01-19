@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, empty } from 'rxjs';
 import { Pregled } from './pregled';
 import { Korisnik } from '../home/korisnik';
 import { OperacijaService }from '../services/operacijaService';
@@ -37,6 +37,23 @@ export class PregledListComponent implements OnInit {
     // console.log('asdasdasdasdasdasdasdasdasdsdasdasd ' +this.korisnik.ime);
     this.pregledi = this.pregledService.getPregled(this.info.idKorisnik); 
 
+  }
+
+  isEmpty(p : Pregled) : boolean{
+    if(p.ocenaLekara == null){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  isPacijent() :boolean{
+    if(this.info.authorities.includes("PACIJENT")){
+      return true;
+    }else{
+      return false;
+    }
   }
   
 }

@@ -16,6 +16,9 @@
       <li *ngIf="!authority" class="nav-item">
         <a class="nav-link" routerLink="auth/login">Login</a>
       </li>
+      <li *ngIf="!authority" class="nav-item">
+        <a class="nav-link" routerLink="signup">Sign Up</a>
+      </li>
       <li *ngIf="authority === 'pacijent'" class="nav-item">
         <a class="nav-link" routerLink="pregledlist">Pregledi</a>
       </li>
