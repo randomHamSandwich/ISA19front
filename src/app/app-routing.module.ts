@@ -8,8 +8,9 @@ import { UserComponent } from './user/user.component';
 import { AdminComponent } from './admin/admin.component';
 import { PacijentComponent} from './pacijent/pacijent.component';
 import { KlinikaListComponent} from './klinika-list/klinika-list.component';
-import { PacijentUpdateComponent } from './pacijent-update/pacijent-update.component'
-import { LekarListComponent } from'./lekar-list/lekar-list.component'
+import { PacijentUpdateComponent } from './pacijent-update/pacijent-update.component';
+import { LekarListComponent } from'./lekar-list/lekar-list.component';
+import { PregledListComponent } from'./pregled-list/pregled-list.component'
 
 const routes: Routes = [
     {
@@ -51,6 +52,11 @@ const routes: Routes = [
     {
         path: 'lekarlist',
         component: LekarListComponent
+
+    },
+    {
+        path: 'pregledlist',
+        component: PregledListComponent
 
     },
     {

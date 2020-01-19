@@ -1,19 +1,24 @@
 <p>home works!</p>
 <div *ngIf="info.token; else loggedOut">
-    <h5 class="text-primary">Your Information</h5>
-    <p>
+    <h3 class="text-primary">Your Information</h3>
+    <!-- <p>
       <strong>Username:</strong> {{info.username}}<br/>
       <strong>Roles:</strong> {{info.authorities}}<br />
-      <!-- <strong>Token:</strong> {{info.token}}. -->
-    </p>
-<br>
-<br>
-<button class="btn btn-secondary" (click)="logout()">Logout</button>
-    
-<app-pacijent [korisnik]='korisnik | async' ></app-pacijent>
-   
+      <strong>Token:</strong> {{info.token}}.
+    </p> -->
 
-  </div>
+<!-- <button class="btn btn-secondary" (click)="logout()">Logout</button> -->
+<button class="btn btn-rpimary">
+
+</button>
+<!-- {{korisnik.ime}} -->
+
+<!-- <app-pregled-list [korisnik] = "korisnik" [pregledi]= "pregledi | async"></app-pregled-list> -->
+<app-pregled-list ></app-pregled-list>
+<app-pacijent [korisnik]='korisnik | async' ></app-pacijent>
+  
+
+</div>
 
   
   

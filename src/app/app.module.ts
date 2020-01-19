@@ -22,6 +22,7 @@ import { PacijentUpdateComponent } from './pacijent-update/pacijent-update.compo
 import { UpdatePasswordComponent } from './pacijent-update/update-password/update-password.component';
 import { LekarComponent } from './lekar/lekar.component';
 import { LekarListComponent } from './lekar-list/lekar-list.component';
+import { PregledListComponent } from './pregled-list/pregled-list.component';
 
 
 
@@ -40,6 +41,7 @@ import { LekarListComponent } from './lekar-list/lekar-list.component';
     UpdatePasswordComponent,
     LekarComponent,
     LekarListComponent,
+    PregledListComponent,
 
 
     

@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   }
 
   korisnik:Observable<Korisnik> ;
+  
   constructor(private token: TokenStorageService, private korisnikService: KorisnikService) { }
 
   ngOnInit() {
