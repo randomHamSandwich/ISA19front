@@ -4,6 +4,7 @@ import { Pregled } from './pregled';
 import { Korisnik } from '../home/korisnik';
 import { OperacijaService }from '../services/operacijaService';
 import { PregledService} from '../services/pregledService';
+import { TokenStorageService } from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-pregled-list',
@@ -11,18 +12,30 @@ import { PregledService} from '../services/pregledService';
   styleUrls: ['./pregled-list.component.css']
 })
 export class PregledListComponent implements OnInit {
-  // @Input() korisnik: Korisnik
 
+  info: {
+    token: any;
+    username: any;
+    authorities: any;
+    idKorisnik : string
+  }
   pregledi :Observable<Pregled[]>;
 
-  constructor(private pregledService: PregledService, private operacijaService : OperacijaService) { }
+  constructor(private token: TokenStorageService, private pregledService: PregledService, private operacijaService : OperacijaService) { }
 
   ngOnInit() {
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername(),
+      authorities: this.token.getAuthorities(),
+      idKorisnik : this.token.getIdKorisnik()
+      
+    };
     this.reloadData();
   }
   reloadData() {
     // console.log('asdasdasdasdasdasdasdasdasdsdasdasd ' +this.korisnik.ime);
-    this.pregledi = this.pregledService.getPregled('11'); 
+    this.pregledi = this.pregledService.getPregled(this.info.idKorisnik); 
 
   }
   

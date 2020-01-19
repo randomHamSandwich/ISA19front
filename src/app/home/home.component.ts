@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     token: any;
     username: any;
     authorities: any;
+    idKorisnik: any
   }
 
   korisnik:Observable<Korisnik> ;
@@ -27,7 +28,8 @@ export class HomeComponent implements OnInit {
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
-      authorities: this.token.getAuthorities()
+      authorities: this.token.getAuthorities(),
+      idKorisnik: this.token.getIdKorisnik()
       
     };
     this.reloadData();
@@ -41,8 +43,6 @@ export class HomeComponent implements OnInit {
 
   reloadData() {
     this.korisnik = this.korisnikService.getKorisnik(this.info.username);
-    // this.korisnici = this.korisnikService.getKorisnik(this.info.username);
-    // console.log('korisnik posle reloadData '+this.korisnik)
-    
+    // console.log('MI VOLIMO MIRU SKORIC' +((this.korisnik as unknown)as Korisnik).ime);
   }
 }

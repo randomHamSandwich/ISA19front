@@ -5,6 +5,7 @@ import { KlinikaService } from '../services/klinika.service';
 import { KorisnikService } from '../services/korisnik.service';
 import { Specialization } from './specialization';
 import { KlinikFilter } from './klinika-filter';
+import { TokenStorageService } from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-klinika-list',
@@ -16,6 +17,13 @@ export class KlinikaListComponent implements OnInit {
   klinike: Observable<Klinika[]>;
   klinikaFilter: KlinikFilter;
   form: any = {};
+
+  info: {
+    token: any;
+    username: any;
+    authorities: any;
+    idKorisnik: any
+  }
   specs: Specialization[] = [
     { id: 1, name: ' ' },
     { id: 2, name: 'NEUROLOGIJA' },
@@ -24,9 +32,16 @@ export class KlinikaListComponent implements OnInit {
 
   ]
 
-  constructor(private klinikaService: KlinikaService, private korisnikService: KorisnikService) { }
+  constructor(private klinikaService: KlinikaService,  private token: TokenStorageService,private korisnikService: KorisnikService) { }
 
   ngOnInit() {
+    this.info = {
+      token: this.token.getToken(),
+      username: this.token.getUsername(),
+      authorities: this.token.getAuthorities(),
+      idKorisnik : this.token.getIdKorisnik()
+      
+    };
     this.reloadData();
     // this.form.spec= ' ';
   }
@@ -54,10 +69,6 @@ export class KlinikaListComponent implements OnInit {
     // this.korisnikService.getLekariSaSpecijalizacijom
     return true;
 
-    if (k.idKlinika == '1') {
-      return true;
-    } else
-      return false;
   }
 
 }

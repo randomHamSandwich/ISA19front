@@ -1,30 +1,20 @@
 <p>home works!</p>
 <div *ngIf="info.token; else loggedOut">
-    <h3 class="text-primary">Your Information</h3>
-    <!-- <p>
-      <strong>Username:</strong> {{info.username}}<br/>
-      <strong>Roles:</strong> {{info.authorities}}<br />
-      <strong>Token:</strong> {{info.token}}.
-    </p> -->
+  <h3 class="text-primary">Your Information</h3>
+  <p>
+    <strong>Username:</strong> {{info.username}}<br />
+    <strong>Roles:</strong> {{info.authorities}}<br />
+    <strong>Token:</strong> {{info.token}}. <br />
+    <strong>IdKorisnik:</strong> {{info.idKorisnik}}. <br />
 
-<!-- <button class="btn btn-secondary" (click)="logout()">Logout</button> -->
-<button class="btn btn-rpimary">
+  </p>
 
-</button>
-<!-- {{korisnik.ime}} -->
+  <!-- <button class="btn btn-secondary" (click)="logout()">Logout</button> -->
 
-<!-- <app-pregled-list [korisnik] = "korisnik" [pregledi]= "pregledi | async"></app-pregled-list> -->
-<app-pregled-list ></app-pregled-list>
-<app-pacijent [korisnik]='korisnik | async' ></app-pacijent>
-  
+  <!-- <app-pregled-list></app-pregled-list> -->
+  <app-pacijent [korisnik]='korisnik | async'></app-pacijent>
 
 </div>
-
-  
-  
-  <ng-template #loggedOut>
-    Please login.
-  </ng-template>
-
-
- 
+<ng-template #loggedOut>
+  Please login.
+</ng-template>
