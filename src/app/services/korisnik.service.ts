@@ -36,16 +36,27 @@ export class KorisnikService {
     return this.http.get(this.korisnikUrl + '/' + id, { params })
   }
 
-  public getLekariKlinike(idKlinike: string, spec: string): Observable<any> {
-    if (spec == null) {
+  public getLekariKlinike(idKlinike: string, spec: string, date: string): Observable<any> {
+    if (spec == null || date == null) {
       const params = new HttpParams().set('idKlinike', idKlinike);
       return this.http.get(this.korisnikUrl + '/' + 'lekari/all', { params });
     } else {
-      const params = new HttpParams().set('idKlinike', idKlinike).set('spec', spec);
+      const params = new HttpParams()
+      .set('idKlinike', idKlinike)
+      .set('spec', spec)
+      .set('date', date);
       return this.http.get(this.korisnikUrl + '/' + 'lekari', { params });
     }
 
   }
+
+  // public getDostupiLekariKlinike(idKlinike: string, spec: string, date :Date){
+  //   const params = new HttpParams()
+  //   .set('idKlinike', idKlinike)
+  //   .set('spec', spec)
+  //   .set('date', date.toString());
+  //   return this.http.get(this.korisnikUrl + '/lekari/dostupni', {params})
+  // }
 
 
 }

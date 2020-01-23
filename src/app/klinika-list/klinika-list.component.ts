@@ -6,6 +6,7 @@ import { KorisnikService } from '../services/korisnik.service';
 import { Specialization } from './specialization';
 import { KlinikFilter } from './klinika-filter';
 import { TokenStorageService } from '../auth/token-storage.service';
+import { DatepickerConfig } from 'ngx-bootstrap/datepicker/public_api';
 
 @Component({
   selector: 'app-klinika-list',
@@ -17,6 +18,7 @@ export class KlinikaListComponent implements OnInit {
   klinike: Observable<Klinika[]>;
   klinikaFilter: KlinikFilter;
   form: any = {};
+  minDate: Date;
 
   info: {
     token: any;
@@ -25,12 +27,13 @@ export class KlinikaListComponent implements OnInit {
     idKorisnik: any
   }
   specs: Specialization[] = [
-    { id: 1, name: ' ' },
-    { id: 2, name: 'NEUROLOGIJA' },
-    { id: 3, name: 'OFTALMOLOGIJA' },
-    { id: 4, name: 'INFEKTOLOGIJA' }
+    // { id: 1, name: ' ' },
+    { id: 1, name: 'NEUROLOGIJA' },
+    { id: 2, name: 'OFTALMOLOGIJA' },
+    { id: 3, name: 'INFEKTOLOGIJA' }
 
   ]
+
 
   constructor(private klinikaService: KlinikaService,  private token: TokenStorageService,private korisnikService: KorisnikService) { }
 
@@ -43,6 +46,8 @@ export class KlinikaListComponent implements OnInit {
       
     };
     this.reloadData();
+    this.minDate = new Date();
+    this.minDate.setDate(this.minDate.getDate() + 1);
     // this.form.spec= ' ';
   }
 
@@ -60,7 +65,9 @@ export class KlinikaListComponent implements OnInit {
     // }else{
     this.klinikaFilter = new KlinikFilter(this.form.spec, this.form.date);
     console.log(this.klinikaFilter);
+
     this.klinike = this.klinikaService.getKlinikaList(this.klinikaFilter);
+
 
   }
 

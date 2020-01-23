@@ -16,7 +16,7 @@ export class PacijentComponent implements OnInit {
 
   ngOnInit() {
     this.updatePacijent=false;
-    console.log("ngOnInit() caled xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+    
 
   }
 

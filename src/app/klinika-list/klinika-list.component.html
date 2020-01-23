@@ -1,43 +1,32 @@
-<!-- <p>klinika-list works!</p>
+<!-- <p>klinika-list works!</p> -->
 
-
-<div *ngFor="let klinika of klinike | async" style="width: 300px;">
-  <app-klinika [klinika]='klinika'></app-klinika>
-</div>
-
- -->
-
-
-<!-- <div *ngIf="authority != 'pacijent'" ; else loggedOut"> -->
 
 <div *ngIf="isPacijent(); else loggedOut">
 
   <h1>TESTING</h1>
-  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" required>
 
     <div class="form-group">
       <label for="spec">Specijalizacija:</label>
-      <select class="form-control" name="spec" [(ngModel)]="form.spec" #spec="ngModel">
+      <select class="form-control" name="spec" [(ngModel)]="form.spec" #spec="ngModel" required>
 
         <option *ngFor="let s of specs " [value]="s.name" [selected]="true" ng-selected="true">
           {{s.name}}
         </option>
-
       </select>
-      <!-- <div *ngIf="spec.errors.required">Email is required</div> -->
+      <div *ngIf="f.submitted && spec.invalid">
+        <div *ngIf="spec.errors.required">Specijalizacija is required</div>
+      </div>
+
     </div>
 
-    <!-- <div class="form-group">
-    <label for="date">date</label>
-    <input id="date" name="date" [(ngModel)]="form.date"
-            type="text" bsDatepicker class="form-control" />
-  </div>
-
- -->
-    <div class="row">
-      <div class="col-xs-12 col-12 col-md-4 form-group">
-        <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker name=date [(ngModel)]="form.date"
-          #name="ngModel" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY'  }">
+    <div class="form-group">
+      <!-- <div class="col-xs-12 col-12 col-md-4 form-group"> -->
+      <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker name=date [(ngModel)]="form.date"
+        [minDate]="minDate" readonly #date="ngModel" required [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY'  }">
+      <!-- </div> -->
+      <div *ngIf="f.submitted && date.invalid">
+        <div *ngIf="date.errors.required">Date is required</div>
       </div>
 
     </div>

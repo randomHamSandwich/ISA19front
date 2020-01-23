@@ -1,28 +1,31 @@
- <p>pacijent works!</p>
+<p>pacijent works!</p>
 
 <div *ngIf="korisnik; else noInfo">
-<!-- <div> -->
+    <!-- <div> -->
 
     <div *ngIf="!updatePacijent; else updatePacijentTemplate">
-    <p>Ime: {{korisnik.ime}}</p>
-    <p>Prezime: {{korisnik.prezime}}</p>
-    <p>Ulica: {{korisnik.ulica}}</p>
-    <p>Broj ulice: {{korisnik.brojUlice}}</p>
-    <p>Grad: {{korisnik.grad}}</p>
-    <p>Drzava: {{korisnik.drzava}}</p>
-    <p>Telefon: {{korisnik.brojTelefona}}</p>
-    <p>JMBG: {{korisnik.jmbg}}</p>
-    <p>Email: {{korisnik.email}}</p>
 
-    <!-- <a href="pacijentupdate" class="btn btn-success">Update your information</a> -->
-    <button class="btn btn-success" (click)="onUpdatePacijent()">Update your information</button>
-  
+        <!-- <a href="pacijentupdate" class="btn btn-success">Update your information</a> -->
+        <button class="btn btn-success" (click)="onUpdatePacijent()">Update your information</button>
 
-</div>
+
+        <p>Ime: {{korisnik.ime}}</p>
+        <p>Prezime: {{korisnik.prezime}}</p>
+        <p>Ulica: {{korisnik.ulica}}</p>
+        <p>Broj ulice: {{korisnik.brojUlice}}</p>
+        <p>Grad: {{korisnik.grad}}</p>
+        <p>Drzava: {{korisnik.drzava}}</p>
+        <p>Telefon: {{korisnik.brojTelefona}}</p>
+        <p>JMBG: {{korisnik.jmbg}}</p>
+        <p>Email: {{korisnik.email}}</p>
+
+
+
+    </div>
     <ng-template #updatePacijentTemplate>
         <p><button class="btn btn-success" (click)="onUpdatePacijent()">back</button></p>
         <app-pacijent-update [korisnik]='korisnik'></app-pacijent-update>
-  
+
     </ng-template>
 </div>
 
@@ -30,5 +33,5 @@
 
 
 <ng-template #noInfo>
- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 </ng-template>

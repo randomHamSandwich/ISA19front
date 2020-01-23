@@ -5,8 +5,7 @@
             <thead>
                   <tr>
                         <th scope="col">#</th>
-                        <th scope="col">vremePocetka</th>
-                        <th scope="col">vremeZavrsetka</th>
+                        <th scope="col">Datum</th>
                         <th scope="col">Specijalaizacija</th>
                         <th scope="col">ocenaLekara</th>
                         <th scope="col">ocenaKilinike</th>
@@ -19,14 +18,13 @@
 
                   <tr class="info">
                         <th scope="row">0</th>
-                        <td>{{pregled.vremePocetka}}</td>
-                        <td>{{pregled.vremeZavrsetka}}</td>
-                        <td>{{Specijalaizacija}}</td>
+                        <td>{{pregled.vremePocetka}}</td>                        
+                        <td></td>
                         <td>{{pregled.ocenaLekara}}</td>
                         <td>{{pregled.ocenaKilinike}}</td>
-                        <td *ngIf="isEmpty(pregled)">empty</td>
-                        <td *ngIf="!isEmpty(pregled)">FULLLLL</td>
-
+                        <td *ngIf="isEmpty(pregled)"><button class="btn btn-info">Oceni Lekara</button></td>
+                        <td *ngIf="!isEmpty(pregled)"></td>
+                        
                   </tr>
 
 
