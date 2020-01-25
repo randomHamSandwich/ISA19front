@@ -1,5 +1,5 @@
 <div *ngIf="isPacijent(); else loggedOut">
-     
+
 
       <div *ngIf="isPriazIstorijaPregleda; else zakazaniPreglediTempalte">
             <button class="btn btn-success" (click)="onChangePrikaz()">Istorija pregleda</button>
@@ -25,39 +25,45 @@
                               <th scope="row">{{i+1}}</th>
                               <td>{{pregled.vremePocetka}}</td>
                               <td></td>
-                              <td *ngIf="isOcenjenLekar(pregled)"  >{{pregled.ocenaLekara}}</td>
+                              <td *ngIf="isOcenjenLekar(pregled)">{{pregled.ocenaLekara}}</td>
                               <td *ngIf="!isOcenjenLekar(pregled)">
 
-                                    <select name="oceneLekara[{{i}}]" [(ngModel)]="oceneLekara[i]">
-                       
-                                     <option  [value]="1">1</option>
-                                     <option  [value]="2">2</option>
-                                     <option  [value]="3">3</option>
-                                     <option  [value]="4">4</option>
-                                     <option  [value]="5">5</option>
-                                   </select>
+                                    <select name="oceneLekara[{{i}}]" [(ngModel)]="oceneLekara[i]"
+                                          (change)="onOcenaLekaraChange($event.target.value,[i])">
+
+                                          <option [value]="1">1</option>
+                                          <option [value]="2">2</option>
+                                          <option [value]="3">3</option>
+                                          <option [value]="4">4</option>
+                                          <option [value]="5">5</option>
+                                    </select>
 
 
                               </td>
                               <td *ngIf="isOcenjenaKlinika(pregled)">{{pregled.ocenaKilinike}}</td>
                               <td *ngIf="!isOcenjenaKlinika(pregled)">
 
-                                    <select name="oceneKlinia[{{i}}]" [(ngModel)]="oceneKlinia[i]">
-                       
-                                          <option  [value]="1">1</option>
-                                          <option  [value]="2">2</option>
-                                          <option  [value]="3">3</option>
-                                          <option  [value]="4">4</option>
-                                          <option  [value]="5">5</option>
-                                        </select>
+                                    <select name="oceneKlinia[{{i}}]" [(ngModel)]="oceneKlinia[i]"
+                                          (change)="onOcenaKlinikeChange($event.target.value,[i])">
+
+                                          <option [value]="1">1</option>
+                                          <option [value]="2">2</option>
+                                          <option [value]="3">3</option>
+                                          <option [value]="4">4</option>
+                                          <option [value]="5">5</option>
+                                    </select>
 
                               </td>
 
-                              <td *ngIf="!isOcenjenLekar(pregled)"  (click)="onOceniLekara(pregled,oceneLekara[i])"><button class="btn btn-info">Oceni Lekara</button>
+                              <td *ngIf="!isOcenjenLekar(pregled)">
+                                    <button class="btn btn-info" [disabled]="!isOcenaLekar[i]"
+                                          (click)="onOceniLekara(pregled,oceneLekara[i])">Oceni Lekara</button>
                               </td>
-                              <td  *ngIf="isOcenjenLekar(pregled)"></td>
+                              <td *ngIf="isOcenjenLekar(pregled)"></td>
 
-                              <td *ngIf="!isOcenjenaKlinika(pregled)" (click)="onOceniKliniku(pregled,oceneKlinia[i])"><button class="btn btn-info">Oceni Kliniku</button>
+                              <td *ngIf="!isOcenjenaKlinika(pregled)">
+                                    <button class="btn btn-info" [disabled]="!isOcenaKlina[i]"
+                                          (click)="onOceniKliniku(pregled,oceneKlinia[i])">Oceni Kliniku</button>
                               </td>
                               <td *ngIf="isOcenjenaKlinika(pregled)"></td>
                         </tr>
@@ -69,7 +75,7 @@
       </div>
       <ng-template #zakazaniPreglediTempalte>
             <button class="btn btn-success" (click)="onChangePrikaz()">Zakazani pregledi</button>
-            
+
             <h3>Moji zakazani pregledi</h3>
             <table class="table table-dark">
                   <thead>
@@ -93,15 +99,16 @@
                               <td></td>
                               <td>{{pregled.ocenaLekara}}</td>
                               <td>{{pregled.ocenaKilinike}}</td>
-                              <td ><button class="btn btn-info" (click)="onOtkaziPregled(pregled)">Odkazi pregled</button>
-                              
+                              <td><button class="btn btn-info" (click)="onOtkaziPregled(pregled)">Odkazi
+                                          pregled</button>
+
                         </tr>
 
                   </tbody>
 
             </table>
-            
-        </ng-template>
+
+      </ng-template>
 
 </div>
 

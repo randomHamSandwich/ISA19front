@@ -70,7 +70,7 @@
                   <td>
 
                     <select name="moguciTermniList[{{i}}]" [(ngModel)]="moguciTermniList[i]"
-                     (change) = "onTerminChange($event.target.value)">
+                     (change) = "onTerminChange($event.target.value,[i])">
         
                       <option *ngFor="let termin of lekar.slobodniTermini " [value]="termin">
                         {{termin}}
@@ -80,7 +80,7 @@
  
 
                   </td>
-                  <td> <button  class="btn btn-info" (click)= "onZakaziLekar(lekar,moguciTermniList[i])" [disabled]="isBtnDisabled">Zakazi</button> </td>
+                  <td> <button  class="btn btn-info" (click)= "onZakaziLekar(lekar,moguciTermniList[i])" [disabled]="!isBtnDisabled[i]">Zakazi</button> </td>
             </tr>
 
 

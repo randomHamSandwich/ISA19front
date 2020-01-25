@@ -21,7 +21,7 @@ import { PregledService } from '../services/pregledService';
 export class LekarListComponent implements OnInit {
   // @Input() klinika: Klinika;
 
-  isBtnDisabled: boolean;
+  isBtnDisabled=[];
   lekari: Observable<Lekar[]>;
   lekarFilter: KlinikFilter;
   form: any = {};
@@ -58,7 +58,7 @@ export class LekarListComponent implements OnInit {
       idKorisnik: this.token.getIdKorisnik()
 
     };
-    this.isBtnDisabled = true;
+    // this.isBtnDisabled = true;
     this.minDate = new Date();
     this.minDate.setDate(this.minDate.getDate() + 1);
 
@@ -107,10 +107,10 @@ export class LekarListComponent implements OnInit {
       
   }
 
-  onTerminChange(termin: string) {
+  onTerminChange(termin: string, index: number) {
     console.log(((String(termin)).substr(0, 5)).replace(':', ' '));
     if (this.lekarFilter != null && this.lekarFilter.date != null && this.lekarFilter.spec != null) {
-      this.isBtnDisabled = false;
+      this.isBtnDisabled[index] = true;
     }
   }
 

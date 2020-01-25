@@ -6,6 +6,7 @@ import { OperacijaService } from '../services/operacijaService';
 import { PregledService } from '../services/pregledService';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { DateFormatter } from 'ngx-bootstrap/datepicker/public_api';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-pregled-list',
@@ -23,6 +24,8 @@ export class PregledListComponent implements OnInit {
   pregledi: Observable<Pregled[]>;
   preglediZakazani: Observable<Pregled[]>;
   isPriazIstorijaPregleda: boolean;
+  isOcenaLekar =[];
+  isOcenaKlina =[];
   oceneLekara =[];
   oceneKlinia =[];
 
@@ -38,6 +41,8 @@ export class PregledListComponent implements OnInit {
     };
     this.reloadData();
     this.isPriazIstorijaPregleda = true;
+    // this.isOcenaLekar = false;
+    // this.isOcenaKlina = false;
   }
   reloadData() {
     // console.log('asdasdasdasdasdasdasdasdasdsdasdasd ' +this.korisnik.ime);
@@ -98,6 +103,10 @@ export class PregledListComponent implements OnInit {
     ).subscribe();
 
   }
+  onOcenaLekaraChange(ocena:number,index: number ){ this.isOcenaLekar[index]= true;
+  console.log(index)}
+  onOcenaKlinikeChange(ocena:number, index: number){ this.isOcenaKlina[index]= true ;      console.log(index)}
+
 
 
   isPacijent(): boolean {
