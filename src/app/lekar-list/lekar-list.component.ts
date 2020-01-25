@@ -10,6 +10,7 @@ import { KlinikaService } from '../services/klinika.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { DateFormatter } from 'ngx-bootstrap/datepicker/public_api';
 import { formatDate } from '@angular/common';
+import { PregledService } from '../services/pregledService';
 // import { formatDate } from 'ngx-bootstrap/chronos/format';
 
 @Component({
@@ -20,10 +21,14 @@ import { formatDate } from '@angular/common';
 export class LekarListComponent implements OnInit {
   // @Input() klinika: Klinika;
 
+  isBtnDisabled: boolean;
   lekari: Observable<Lekar[]>;
   lekarFilter: KlinikFilter;
   form: any = {};
-  idKlinika : string;
+  unesi: any = {};
+  // slobodniTermini: any;
+  moguciTermniList = [];
+  idKlinika: string;
 
   info: {
     token: any;
@@ -41,30 +46,30 @@ export class LekarListComponent implements OnInit {
   minDate: Date;
 
 
-//   When subscribing to an observable in a component, you almost always arrange to unsubscribe when the component is destroyed.
-// There are a few exceptional observables where this is not necessary. The ActivatedRoute observables are among the exceptions.
-  constructor(private token: TokenStorageService,private korisnikService: KorisnikService,private route: ActivatedRoute) { }
+  //   When subscribing to an observable in a component, you almost always arrange to unsubscribe when the component is destroyed.
+  // There are a few exceptional observables where this is not necessary. The ActivatedRoute observables are among the exceptions.
+  constructor(private token: TokenStorageService, private korisnikService: KorisnikService, private pregledService: PregledService, private route: ActivatedRoute) { }
 
-  ngOnInit()  {
+  ngOnInit() {
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities(),
-      idKorisnik : this.token.getIdKorisnik()
-      
-    };
+      idKorisnik: this.token.getIdKorisnik()
 
+    };
+    this.isBtnDisabled = true;
     this.minDate = new Date();
     this.minDate.setDate(this.minDate.getDate() + 1);
 
     this.route.paramMap.subscribe(params => {
-      this.lekarFilter = new KlinikFilter( params.get("spec"), params.get("date"))
+      this.lekarFilter = new KlinikFilter(params.get("spec"), params.get("date"))
       this.idKlinika = params.get("idKlinika");
     })
-    console.log('filter ' + this.lekarFilter+'  idKlinika:' + this.idKlinika);
-    if(this.lekarFilter !=null){
+    console.log('filter ' + this.lekarFilter.date + '  idKlinika:' + this.idKlinika);
+    if (this.lekarFilter != null && this.lekarFilter.date != null && this.lekarFilter.spec != null) {
       this.form.spec = this.lekarFilter.spec;
-      this.form.date = formatDate(this.lekarFilter.date,"dd-MM-2020", 'en-US');  "24-5-2020";
+      this.form.date = formatDate(this.lekarFilter.date, "dd-MM-2020", 'en-US'); "24-5-2020";
     }
     this.reloadData();
   }
@@ -83,16 +88,37 @@ export class LekarListComponent implements OnInit {
     console.log(this.lekarFilter);
     console.log(this.lekarFilter.date.toString());
 
-    // this.lekari = this.korisnikService.getKlinikaList(this.klinikaFilter);
-
+    this.lekari = this.korisnikService.getLekariKlinike(this.idKlinika, this.lekarFilter.spec, this.lekarFilter.date);
+    // this.isBtnDisabled = true;
 
   }
 
+  onZakaziLekar(lekar: Lekar, izabraniTermin: string) {
+    console.log("prosledjeni lekar " + lekar.idOsoba + " " + lekar.ime);
+    console.log("izabrani termin " + izabraniTermin);
+    this.pregledService.zakaziPregled({
+      idLekar: lekar.idOsoba,
+      date: this.form.date.toString(),
+      idPacijent: this.info.idKorisnik,
+      // time: "08 30"
+      time: ((String(izabraniTermin)).substr(0, 5)).replace(':', ' ')
+    })
+      .subscribe();
+      
+  }
 
-  isPacijent() :boolean{
-    if(this.info.authorities.includes("PACIJENT")){
+  onTerminChange(termin: string) {
+    console.log(((String(termin)).substr(0, 5)).replace(':', ' '));
+    if (this.lekarFilter != null && this.lekarFilter.date != null && this.lekarFilter.spec != null) {
+      this.isBtnDisabled = false;
+    }
+  }
+
+
+  isPacijent(): boolean {
+    if (this.info.authorities.includes("PACIJENT")) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }

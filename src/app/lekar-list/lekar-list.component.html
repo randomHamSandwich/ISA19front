@@ -51,12 +51,12 @@
                   <th scope="col">Klinika</th>
                   <th scope="col">Ocena Lekar</th>
                   <th scope="col">Cena</th>
-                  <th scope=col>Vreme</th>
+                  <th scope=col>Vreme od &nbsp; &nbsp;  do</th>
                   <th></th>
             </tr>
       </thead>
 
-      <tbody *ngFor="let lekar of lekari | async">
+      <tbody *ngFor="let lekar of lekari | async; let i = index;">
 
 
             <tr class="info">
@@ -66,9 +66,21 @@
                   <td>{{lekar.specijalizacija}}</td>
                   <td>{{lekar.klinikaNaziv}}</td>
                   <td>{{lekar.ocenaLekar}}</td>
-                  <th>{{lekar.cena}}</th>
-                  <th>VREME</th>
-                  <th> <button class="btn btn-info">Zakazi</button> </th>
+                  <td>{{lekar.cena}}</td>
+                  <td>
+
+                    <select name="moguciTermniList[{{i}}]" [(ngModel)]="moguciTermniList[i]"
+                     (change) = "onTerminChange($event.target.value)">
+        
+                      <option *ngFor="let termin of lekar.slobodniTermini " [value]="termin">
+                        {{termin}}
+                      </option>
+                    </select>
+                <!-- {{lekar.zzzzz}} -->
+ 
+
+                  </td>
+                  <td> <button  class="btn btn-info" (click)= "onZakaziLekar(lekar,moguciTermniList[i])" [disabled]="isBtnDisabled">Zakazi</button> </td>
             </tr>
 
 

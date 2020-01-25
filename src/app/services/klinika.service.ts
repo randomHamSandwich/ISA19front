@@ -26,18 +26,6 @@ export class KlinikaService {
     }
 
   }
-  //isfiltriraj na backendu hql na becku i onda pozivaj samo ono sto ti treba yea
-  // public getKlinikaList(): Observable<any> {
-  //   const params = new HttpParams().set('spec', 'sdad');
-  //   return this.http.get(this.klinikaUrl+'/all',{params});
-  // }
-
-  // sve sa jednim endpojntom pa u zavisnosti od parametara na back endu saljemo nazada filtrirane podatke ili ne
-  // public getKlinikaSaLekarimSpec(): Observable<any>{
-  //   const params = new HttpParams().set('spec', 'sdad');
-
-  //   return this.http.get(this.klinikaUrl+'/spec',{params});
-  // }
 
   //not used
   public getKlinika(idKlinika: number): Observable<any> {

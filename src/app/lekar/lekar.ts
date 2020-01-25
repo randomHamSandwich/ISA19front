@@ -6,4 +6,6 @@ export class Lekar {
     klinikaNaziv: string;
     ocenaLekar: number;
     specijalizacija: string;
+    cena: number;
+    slobodniTermini : string[];
 }

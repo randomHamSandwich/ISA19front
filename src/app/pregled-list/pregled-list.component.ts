@@ -2,9 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable, empty } from 'rxjs';
 import { Pregled } from './pregled';
 import { Korisnik } from '../home/korisnik';
-import { OperacijaService }from '../services/operacijaService';
-import { PregledService} from '../services/pregledService';
+import { OperacijaService } from '../services/operacijaService';
+import { PregledService } from '../services/pregledService';
 import { TokenStorageService } from '../auth/token-storage.service';
+import { DateFormatter } from 'ngx-bootstrap/datepicker/public_api';
 
 @Component({
   selector: 'app-pregled-list',
@@ -17,43 +18,94 @@ export class PregledListComponent implements OnInit {
     token: any;
     username: any;
     authorities: any;
-    idKorisnik : string
+    idKorisnik: string
   }
-  pregledi :Observable<Pregled[]>;
+  pregledi: Observable<Pregled[]>;
+  preglediZakazani: Observable<Pregled[]>;
+  isPriazIstorijaPregleda: boolean;
+  oceneLekara =[];
+  oceneKlinia =[];
 
-  constructor(private token: TokenStorageService, private pregledService: PregledService, private operacijaService : OperacijaService) { }
+  constructor(private token: TokenStorageService, private pregledService: PregledService, private operacijaService: OperacijaService) { }
 
   ngOnInit() {
     this.info = {
       token: this.token.getToken(),
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities(),
-      idKorisnik : this.token.getIdKorisnik()
-      
+      idKorisnik: this.token.getIdKorisnik()
+
     };
     this.reloadData();
+    this.isPriazIstorijaPregleda = true;
   }
   reloadData() {
     // console.log('asdasdasdasdasdasdasdasdasdsdasdasd ' +this.korisnik.ime);
-    this.pregledi = this.pregledService.getPregled(this.info.idKorisnik); 
+    this.pregledi = this.pregledService.getPregled(this.info.idKorisnik);
+    this.preglediZakazani = this.pregledService.getPreglediZakazani(this.info.idKorisnik);
 
   }
 
-  isEmpty(p : Pregled) : boolean{
-    if(p.ocenaLekara == null){
+  isOcenjenLekar(p: Pregled): boolean {
+    if (p.ocenaLekara == null) {
+      return false;
+    }
+    else {
       return true;
     }
-    else{
+  }
+
+  isOcenjenaKlinika(p: Pregled): boolean {
+    if (p.ocenaKilinike == null) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+
+  onOtkaziPregled(pregled: Pregled) {
+    this.pregledService.otkaziPregled(
+      {
+        idPregleda: pregled.idPregleda
+
+      }
+    ).subscribe();
+    window.location.reload();
+  }
+
+  onChangePrikaz() {
+    this.isPriazIstorijaPregleda = !this.isPriazIstorijaPregleda;
+  }
+
+  onOceniLekara(pregled: Pregled, ocena : number) {
+    this.pregledService.oceniLekara(
+      {
+        "idPregleda": pregled.idPregleda,
+        "ocenaLekara": ocena
+      }
+    ).subscribe();
+
+  }
+
+  onOceniKliniku(pregled: Pregled, ocena : number) {
+    this.pregledService.oceniKliniku(
+      {
+        "idPregleda": pregled.idPregleda,
+        "ocenaKilinike": ocena
+      }
+    ).subscribe();
+
+  }
+
+
+  isPacijent(): boolean {
+    if (this.info.authorities.includes("PACIJENT")) {
+      return true;
+    } else {
       return false;
     }
   }
 
-  isPacijent() :boolean{
-    if(this.info.authorities.includes("PACIJENT")){
-      return true;
-    }else{
-      return false;
-    }
-  }
-  
 }

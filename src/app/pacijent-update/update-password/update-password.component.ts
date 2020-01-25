@@ -33,19 +33,6 @@ export class UpdatePasswordComponent implements OnInit {
       else
       {
 
-        this.updateInfo = new UpdatePacijentInfo(
-          this.form.name,
-          this.form.surname,
-          this.form.username,
-          this.form.streetName,
-          this.form.streetNumber,
-          this.form.contry,
-          this.form.city,
-          this.form.phoneNumber,
-          this.form.password 
-          
-          
-          );
           this.korisnikService.changePassowrd(
             this.korisnik.email,
             {
