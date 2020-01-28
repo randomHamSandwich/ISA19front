@@ -20,8 +20,13 @@
         <a class="nav-link" routerLink="signup">Sign Up</a>
       </li>
       <li *ngIf="authority === 'pacijent'" class="nav-item">
-        <a class="nav-link" routerLink="pregledlist">Pregledi</a>
+        <a class="nav-link" routerLink="pregledlist">Moji Pregledi</a>
       </li>
+
+      <li *ngIf="authority === 'pacijent'" class="nav-item">
+        <a class="nav-link" routerLink="operacijalist">Moje Operacije</a>
+      </li>
+
       <li *ngIf="authority === 'pacijent'" class="nav-item">
         <!-- <button class="btn btn-secondary" (click)="logout()">Logout</button> -->
         <a href="http://127.0.0.1:4200/home" (click)="logout()">Logout</a>

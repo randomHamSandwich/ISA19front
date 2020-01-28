@@ -13,6 +13,13 @@ export class OperacijaService {
     public getOperacije(idKorisnik): Observable<any> {
 
         const params = new HttpParams().set('idKorisnik', idKorisnik);
-        return this.http.get(this.pregledUrl + '/all', { params });
+        return this.http.get(this.pregledUrl + '/izvrseni', { params });
+    }
+
+    
+    public getOperacijeZakazani(idKorisnik): Observable<any> {
+
+        const params = new HttpParams().set('idKorisnik', idKorisnik);
+        return this.http.get(this.pregledUrl + '/zakazani', { params });
     }
 }

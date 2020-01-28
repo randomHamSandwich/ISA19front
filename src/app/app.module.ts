@@ -23,6 +23,7 @@ import { UpdatePasswordComponent } from './pacijent-update/update-password/updat
 import { LekarComponent } from './lekar/lekar.component';
 import { LekarListComponent } from './lekar-list/lekar-list.component';
 import { PregledListComponent } from './pregled-list/pregled-list.component';
+import { OperacijaListComponent } from './operacija-list/operacija-list.component';
 
 
 
@@ -42,6 +43,7 @@ import { PregledListComponent } from './pregled-list/pregled-list.component';
     LekarComponent,
     LekarListComponent,
     PregledListComponent,
+    OperacijaListComponent,
 
 
     

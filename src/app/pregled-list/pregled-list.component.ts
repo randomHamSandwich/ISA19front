@@ -88,7 +88,8 @@ export class PregledListComponent implements OnInit {
     this.pregledService.oceniLekara(
       {
         "idPregleda": pregled.idPregleda,
-        "ocenaLekara": ocena
+        "ocenaLekara": ocena,
+        "idLekara": pregled.idLekara
       }
     ).subscribe();
 
@@ -98,7 +99,9 @@ export class PregledListComponent implements OnInit {
     this.pregledService.oceniKliniku(
       {
         "idPregleda": pregled.idPregleda,
-        "ocenaKilinike": ocena
+        "ocenaKilinike": ocena,
+        "idLekara": pregled.idLekara
+    
       }
     ).subscribe();
 

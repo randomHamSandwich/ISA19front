@@ -11,6 +11,7 @@ import { KlinikaListComponent} from './klinika-list/klinika-list.component';
 // import { PacijentUpdateComponent } from './pacijent-update/pacijent-update.component';
 import { LekarListComponent } from'./lekar-list/lekar-list.component';
 import { PregledListComponent } from'./pregled-list/pregled-list.component'
+import { OperacijaListComponent} from './operacija-list/operacija-list.component'
 
 const routes: Routes = [
     {
@@ -57,6 +58,11 @@ const routes: Routes = [
     {
         path: 'pregledlist',
         component: PregledListComponent
+
+    },
+    {
+        path: 'operacijalist',
+        component: OperacijaListComponent
 
     },
     {

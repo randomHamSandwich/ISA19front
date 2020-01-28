@@ -1,9 +1,11 @@
-<p>lekar-list works!</p>
+<!-- <p>lekar-list works!</p> -->
 
-{{lekarFilter.spec}}
-<p>{{lekarFilter.date}}</p>
+<!-- <p>{{lekarFilter.spec}}</p>
+<p>{{lekarFilter.date}}</p> -->
 
 <div *ngIf="isPacijent(); else loggedOut">
+
+  
       <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" required>
 
             <div class="form-group">
@@ -87,11 +89,13 @@
       </tbody>
 
 </table>
-
-<div *ngFor="let lekar of lekari | async" style="width: 300px;">
+<!-- koristicemo table umesto komponente -->
+<!-- <div *ngFor="let lekar of lekari | async" style="width: 300px;">
       <app-lekar [lekar]='lekar'></app-lekar>
 
-</div>
+</div> -->
+
+
 </div>
 
 <ng-template #loggedOut>

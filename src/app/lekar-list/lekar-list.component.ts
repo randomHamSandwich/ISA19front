@@ -114,7 +114,6 @@ export class LekarListComponent implements OnInit {
     }
   }
 
-
   isPacijent(): boolean {
     if (this.info.authorities.includes("PACIJENT")) {
       return true;
