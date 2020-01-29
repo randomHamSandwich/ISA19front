@@ -1,4 +1,4 @@
-<p>operacija-list works!</p>
+<!-- <p>operacija-list works!</p> -->
 
 <div *ngIf="isPacijent(); else loggedOut">
 
@@ -12,9 +12,12 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Datum</th>
+                    <th scope="col">Lekari</th>
                     <th scope="col">Specijalaizacija</th>
-                    <th scope="col">ocenaLekara</th>
-                    <th scope="col">ocenaKilinike</th>
+                    <th scope="col">Klinika</th>
+                    <th scope="col">Lokacija</th>
+                    <th scope="col">Ocena Lekara</th>
+                    <th scope="col">Ocena Kilinike</th>
                     <th></th>
                     <!-- <th></th> -->
                 </tr>
@@ -26,8 +29,11 @@
                 <tr class="info">
                     <th scope="row">{{i+1}}</th>
                     <td>{{operacija.vremePocetka}}</td>
-                    <td></td>
-                    <!-- <td *ngIf="isOcenjenLekar(operacija)">{{operacija.ocenaLekara}}</td>
+                    <td>{{operacija.lekari}}</td>
+                    <td>{{operacija.specijalizacija}}</td>
+                    <td>{{operacija.nazivKlinike}}</td>
+                    <td>{{operacija.gradKlionike}} {{operacija.ulicaKlinike}}  {{operacija.brojUliceKlinike}}</td>
+                    <td *ngIf="isOcenjenLekar(operacija)">{{operacija.ocenaLekara}}</td>
                     <td *ngIf="!isOcenjenLekar(operacija)">
 
                         <select name="oceneLekara[{{i}}]" [(ngModel)]="oceneLekara[i]"
@@ -41,8 +47,8 @@
                         </select>
 
 
-                    </td> -->
-                    <!-- <td *ngIf="isOcenjenaKlinika(operacija)">{{operacija.ocenaKilinike}}</td>
+                    </td>
+                    <td *ngIf="isOcenjenaKlinika(operacija)">{{operacija.ocenaKilinike}}</td>
                     <td *ngIf="!isOcenjenaKlinika(operacija)">
 
                         <select name="oceneKlinia[{{i}}]" [(ngModel)]="oceneKlinia[i]"
@@ -55,8 +61,8 @@
                             <option [value]="5">5</option>
                         </select>
 
-                    </td> -->
-<!-- 
+                    </td>
+
                     <td *ngIf="!isOcenjenLekar(operacija)">
                         <button class="btn btn-info" [disabled]="!isOcenaLekar[i]"
                             (click)="onOceniLekara(operacija,oceneLekara[i])">Oceni Lekara</button>
@@ -67,7 +73,7 @@
                         <button class="btn btn-info" [disabled]="!isOcenaKlina[i]"
                             (click)="onOceniKliniku(operacija,oceneKlinia[i])">Oceni Kliniku</button>
                     </td>
-                    <td *ngIf="isOcenjenaKlinika(operacija)"></td> -->
+                    <td *ngIf="isOcenjenaKlinika(operacija)"></td>
                 </tr>
 
 
@@ -84,11 +90,12 @@
         <table class="table table-dark">
               <thead>
                     <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">Datum</th>
-                          <th scope="col">Specijalaizacija</th>
-                          <th scope="col">ocenaLekara</th>
-                          <th scope="col">ocenaKilinike</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Datum</th>
+                        <th scope="col">Lekari</th>
+                        <th scope="col">Specijalaizacija</th>
+                        <th scope="col">Klinika</th>
+                        <th scope="col">Lokacija</th>
 
                     </tr>
               </thead>
@@ -99,9 +106,10 @@
                     <tr class="info">
                           <th scope="row">{{i+1}}</th>
                           <td>{{operacija.vremePocetka}}</td>
-                          <td></td>
-                          <td>{{operacija.ocenaLekara}}</td>
-                          <td>{{operacija.ocenaKilinike}}</td>
+                          <td>{{operacija.lekari}}</td>
+                          <td>{{operacija.specijalizacija}}</td>
+                          <td>{{operacija.nazivKlinike}}</td>
+                          <td>{{operacija.gradKlionike}} {{operacija.ulicaKlinike}}  {{operacija.brojUliceKlinike}}</td>
 
                     </tr>
 

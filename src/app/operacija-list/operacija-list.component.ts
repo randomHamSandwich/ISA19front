@@ -20,7 +20,10 @@ export class OperacijaListComponent implements OnInit {
   operacije: Observable<Operacija[]>;
   operacijeZakazane: Observable<Operacija[]>;
   isPriazIstorijaOperacija: boolean;
-  
+  isOcenaLekar = [];
+  isOcenaKlina = [];
+  oceneLekara = [];
+  oceneKlinia = [];
 
   constructor(private token: TokenStorageService, private operacijaService: OperacijaService) { }
 
@@ -33,12 +36,12 @@ export class OperacijaListComponent implements OnInit {
 
     };
     this.reloadData();
-    this.isPriazIstorijaOperacija =true;
+    this.isPriazIstorijaOperacija = true;
   }
   reloadData() {
     this.operacije = this.operacijaService.getOperacije(this.info.idKorisnik)
     this.operacijeZakazane = this.operacijaService.
-    getOperacijeZakazani(this.info.idKorisnik);
+      getOperacijeZakazani(this.info.idKorisnik);
 
   }
 
@@ -53,4 +56,53 @@ export class OperacijaListComponent implements OnInit {
       return false;
     }
   }
+
+  isOcenjenLekar(o: Operacija): boolean {
+    if (o.ocenaLekara == null) {
+      return false;
+    }
+    else {
+      return true;
+    }
+
+  }
+
+  isOcenjenaKlinika(o: Operacija): boolean {
+    if (o.ocenaKlinke == null) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  onOceniLekara(operacija: Operacija, ocena : number) {
+    this.operacijaService.oceniLekara(
+      {
+        "idOperacija": operacija.idOperacija,
+        "ocenaLekara": ocena
+        // "idLekara": pregled.idLekara
+      }
+    ).subscribe();
+
+  }
+
+  onOceniKliniku(operacija: Operacija, ocena : number) {
+    this.operacijaService.oceniKliniku(
+      {
+        "idOperacija": operacija.idOperacija,
+        "ocenaKlinke": ocena
+        // "idLekara": operacija.idLekara
+    
+      }
+    ).subscribe();
+
+  }
+
+  onOcenaLekaraChange(ocena: number, index: number) { this.isOcenaLekar[index] = true; console.log(index) }
+  onOcenaKlinikeChange(ocena: number, index: number) { this.isOcenaKlina[index] = true; console.log(index) }
+
+
+
 }
+

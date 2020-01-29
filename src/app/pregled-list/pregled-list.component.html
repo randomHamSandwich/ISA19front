@@ -10,9 +10,12 @@
                         <tr>
                               <th scope="col">#</th>
                               <th scope="col">Datum</th>
+                              <th scope="col">Lekar</th>
+                              <th scope="col">Klinika</th>
+                              <th scope="col">Dijagnoza</th>
                               <th scope="col">Specijalaizacija</th>
-                              <th scope="col">ocenaLekara</th>
-                              <th scope="col">ocenaKilinike</th>
+                              <th scope="col">Ocena lekara</th>
+                              <th scope="col">Ocenak ilinike</th>
                               <th></th>
                               <!-- <th></th> -->
                         </tr>
@@ -24,7 +27,11 @@
                         <tr class="info">
                               <th scope="row">{{i+1}}</th>
                               <td>{{pregled.vremePocetka}}</td>
-                              <td></td>
+                              <td>{{pregled.imeLekara}} {{pregled.prezimeLekara}}</td>
+                              <td>{{pregled.nazivKlinike}}</td>
+                              <td>{{pregled.dijagnoza}}</td>
+                              <td>{{pregled.specijalizacija}}</td>
+
                               <td *ngIf="isOcenjenLekar(pregled)">{{pregled.ocenaLekara}}</td>
                               <td *ngIf="!isOcenjenLekar(pregled)">
 
@@ -82,9 +89,10 @@
                         <tr>
                               <th scope="col">#</th>
                               <th scope="col">Datum</th>
+                              <th scope="col">Lekar </th>
                               <th scope="col">Specijalaizacija</th>
-                              <th scope="col">ocenaLekara</th>
-                              <th scope="col">ocenaKilinike</th>
+                              <th scope="col">Klinika</th>
+                              <th scope="col">Lokacija</th>
                               <th></th>
                               <!-- <th></th> -->
                         </tr>
@@ -96,9 +104,10 @@
                         <tr class="info">
                               <th scope="row">{{i+1}}</th>
                               <td>{{pregled.vremePocetka}}</td>
-                              <td></td>
-                              <td>{{pregled.ocenaLekara}}</td>
-                              <td>{{pregled.ocenaKilinike}}</td>
+                              <td>{{pregled.imeLekara}} {{pregled.prezimeLekara}}</td>
+                              <td>{{pregled.specijalizacija}}</td>
+                              <td>{{pregled.nazivKlinike}}</td>
+                              <td>{{pregled.gradKlionike}} {{pregled.ulicaKlinike}} {{pregled.brojUliceKlinike}}</td>
                               <td><button class="btn btn-info" (click)="onOtkaziPregled(pregled)">Odkazi
                                           pregled</button>
 

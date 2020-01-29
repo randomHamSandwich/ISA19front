@@ -30,4 +30,12 @@ export class KlinikaComponent implements OnInit {
 
   }
 
+  isKlinikaFilterNull(): boolean {
+    if( this.klinikaFilter == null){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 }

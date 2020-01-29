@@ -1,4 +1,4 @@
-<p>register works!</p>
+<!-- <p>register works!</p> -->
 
 <div *ngIf="!isPacijent(); else loggedOut">
 
@@ -9,8 +9,9 @@
   <ng-template #signupForm>
 
     <div class="row col-sm-6" style="max-width:350px;">
-      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <form  name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group">
+          <!-- <div class="col-md-12 form-group form-inline"></div> -->
           <label for="name">First name</label>
           <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
           <div *ngIf="f.submitted && name.invalid">
@@ -51,7 +52,18 @@
         </div>
 
         <div class="form-group">
-          <label for="jmbg">jmbg</label>
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="passwordSecond" [(ngModel)]="form.passwordSecond"
+            #passwordSecond="ngModel" required minlength="6" />
+          <div *ngIf="f.submitted && passwordSecond.invalid">
+            <div *ngIf="passwordSecond.errors.required">Password is required</div>
+            <div *ngIf="passwordSecond.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="jmbg">JMBG</label>
           <input type="text" class="form-control" name="jmbg" [(ngModel)]="form.jmbg" #jmbg="ngModel" required />
           <div *ngIf="f.submitted && jmbg.invalid">
             <div *ngIf="jmbg.errors.required">jmbg is required</div>
@@ -108,9 +120,14 @@
           <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
             Signup failed!<br />{{errorMessage}}
           </div>
+          <div *ngIf="f.submitted && isChangedPasswordFailed" class="alert alert-warning">
+            Signup failed!<br />{{errorMessage}}
+          </div>
         </div>
       </form>
     </div>
+
+
   </ng-template>
 
 </div>

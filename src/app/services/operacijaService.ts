@@ -6,20 +6,27 @@ import { Observable } from 'rxjs';
   })
 export class OperacijaService {
 
-    private pregledUrl = ' http://localhost:8080/api/operacija'
+    private operacijaUrl = ' http://localhost:8080/api/operacija'
 
     constructor(private http: HttpClient) { }
 
     public getOperacije(idKorisnik): Observable<any> {
 
         const params = new HttpParams().set('idKorisnik', idKorisnik);
-        return this.http.get(this.pregledUrl + '/izvrseni', { params });
+        return this.http.get(this.operacijaUrl + '/izvrseni', { params });
     }
 
     
     public getOperacijeZakazani(idKorisnik): Observable<any> {
 
         const params = new HttpParams().set('idKorisnik', idKorisnik);
-        return this.http.get(this.pregledUrl + '/zakazani', { params });
+        return this.http.get(this.operacijaUrl + '/zakazani', { params });
+    }
+    public oceniKliniku(value: any) {
+        return this.http.put(this.operacijaUrl + '/oceniKliniku', value);
+    }
+
+    public oceniLekara(value: any) {
+        return this.http.put(this.operacijaUrl + '/oceniLekara', value);
     }
 }

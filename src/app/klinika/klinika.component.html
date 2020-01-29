@@ -12,6 +12,7 @@
         <th>Grad</th>
         <th>Drzava</th>
         <th>Opis</th>
+        <th *ngIf="!isKlinikaFilterNull()">Cena</th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,7 @@
         <td>{{klinika.grad}}</td>
         <td>{{klinika.drzava}}</td>
         <td>{{klinika.opis}}</td>
+        <th *ngIf="!isKlinikaFilterNull()">{{klinika.cena}}</th>
       </tr>
       <tr>
         <td colspan="7" align="left">
