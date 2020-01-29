@@ -12,6 +12,7 @@ import { KlinikaListComponent} from './klinika-list/klinika-list.component';
 import { LekarListComponent } from'./lekar-list/lekar-list.component';
 import { PregledListComponent } from'./pregled-list/pregled-list.component'
 import { OperacijaListComponent} from './operacija-list/operacija-list.component'
+import { BrziPreglediListComponent } from './brzi-pregledi-list/brzi-pregledi-list.component'
 
 const routes: Routes = [
     {
@@ -65,6 +66,12 @@ const routes: Routes = [
         component: OperacijaListComponent
 
     },
+    {
+        path: 'brzipregledi',
+        component: BrziPreglediListComponent
+
+    },
+    
     {
         path: '',
         redirectTo: 'home',

@@ -45,7 +45,6 @@ export class PregledListComponent implements OnInit {
     // this.isOcenaKlina = false;
   }
   reloadData() {
-    // console.log('asdasdasdasdasdasdasdasdasdsdasdasd ' +this.korisnik.ime);
     this.pregledi = this.pregledService.getPregled(this.info.idKorisnik);
     this.preglediZakazani = this.pregledService.getPreglediZakazani(this.info.idKorisnik);
 

@@ -22,9 +22,18 @@ export class PregledService {
         return this.http.get(this.pregledUrl + '/zakazani', { params })
     }
 
+    public getBrziPregledi() : Observable<any>{
+        return this.http.get(this.pregledUrl+'/brzi');
+    }
+
     public zakaziPregled(value: any) {
         return this.http.post(this.pregledUrl, value);
     }
+
+    public zakaziBrziPregled(value: any) {
+        return this.http.post(this.pregledUrl+'/brzi', value);
+    }
+    
 
     public otkaziPregled(value: any) {
         return this.http.put(this.pregledUrl + '/otkazi', value);

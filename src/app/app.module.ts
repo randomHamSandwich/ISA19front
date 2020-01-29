@@ -24,6 +24,7 @@ import { LekarComponent } from './lekar/lekar.component';
 import { LekarListComponent } from './lekar-list/lekar-list.component';
 import { PregledListComponent } from './pregled-list/pregled-list.component';
 import { OperacijaListComponent } from './operacija-list/operacija-list.component';
+import { BrziPreglediListComponent } from './brzi-pregledi-list/brzi-pregledi-list.component';
 
 
 
@@ -44,6 +45,7 @@ import { OperacijaListComponent } from './operacija-list/operacija-list.componen
     LekarListComponent,
     PregledListComponent,
     OperacijaListComponent,
+    BrziPreglediListComponent,
 
 
     

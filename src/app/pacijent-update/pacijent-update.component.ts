@@ -50,7 +50,6 @@ export class PacijentUpdateComponent implements OnInit {
     this.changePassword = !this.changePassword;
   }
   isPacijent() :boolean{
-    // console.log('xxxxxxxxxxxxxxxxxxxxxxxAAAAAAAAAAAAAAAA'+this.info.authorities);
     if(this.info.authorities.includes("PACIJENT")){
       return true;
     }else{
