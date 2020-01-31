@@ -25,7 +25,7 @@ export class PregledService {
     public getBrziPregledi() : Observable<any>{
         return this.http.get(this.pregledUrl+'/brzi');
     }
-
+// rezervisi
     public zakaziPregled(value: any) {
         return this.http.post(this.pregledUrl, value);
     }

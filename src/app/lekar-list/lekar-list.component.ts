@@ -21,7 +21,7 @@ import { PregledService } from '../services/pregledService';
 export class LekarListComponent implements OnInit {
   // @Input() klinika: Klinika;
 
-  isBtnDisabled=[];
+  isBtnDisabled = [];
   lekari: Observable<Lekar[]>;
   lekarFilter: KlinikFilter;
   form: any = {};
@@ -29,6 +29,8 @@ export class LekarListComponent implements OnInit {
   // slobodniTermini: any;
   moguciTermniList = [];
   idKlinika: string;
+  isRezervise: boolean;
+  zaRezervisanje: { izabraniLekar: Lekar, izabraniTermin: string }
 
   info: {
     token: any;
@@ -58,7 +60,10 @@ export class LekarListComponent implements OnInit {
       idKorisnik: this.token.getIdKorisnik()
 
     };
-    // this.isBtnDisabled = true;
+    this.isRezervise = false;
+    // this.zaRezervisanje= new Object();
+    // this.zaRezervisanje.termin="";
+
     this.minDate = new Date();
     this.minDate.setDate(this.minDate.getDate() + 1);
 
@@ -93,18 +98,31 @@ export class LekarListComponent implements OnInit {
 
   }
 
-  onZakaziLekar(lekar: Lekar, izabraniTermin: string) {
-    console.log("prosledjeni lekar " + lekar.idOsoba + " " + lekar.ime);
+
+  onPredjiNaRezervisiLekar(izabraniLekar: Lekar, izabraniTermin: string) {
+    console.log("prosledjeni lekar " + izabraniLekar.idOsoba + " " + izabraniLekar.ime);
     console.log("izabrani termin " + izabraniTermin);
+    this.zaRezervisanje = { izabraniLekar, izabraniTermin };
+    this.isRezervise = true;
+    // this.pregledService.zakaziPregled({
+    //   idLekar: lekar.idOsoba,
+    //   date: this.form.date.toString(),
+    //   idPacijent: this.info.idKorisnik,
+    //   // time: "08 30"
+    //   time: ((String(izabraniTermin)).substr(0, 5)).replace(':', ' ')
+    // })
+    //   .subscribe();
+
+  }
+  onRezervisiLekara() {
     this.pregledService.zakaziPregled({
-      idLekar: lekar.idOsoba,
+      idLekar: this.zaRezervisanje.izabraniLekar.idOsoba,
       date: this.form.date.toString(),
       idPacijent: this.info.idKorisnik,
       // time: "08 30"
-      time: ((String(izabraniTermin)).substr(0, 5)).replace(':', ' ')
+      time: ((String(this.zaRezervisanje.izabraniTermin)).substr(0, 5)).replace(':', ' ')
     })
       .subscribe();
-      
   }
 
   onTerminChange(termin: string, index: number) {

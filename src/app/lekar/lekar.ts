@@ -8,4 +8,10 @@ export class Lekar {
     specijalizacija: string;
     cena: number;
     slobodniTermini : string[];
+
+    klinikaUlica: string;
+    klinikaBrojUlice: string;
+    klinikaGrad: string;
+    klinikaDrzava: string;
+    ocenaKlinike: number;
 }
