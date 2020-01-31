@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { KorisnikService } from '../services/korisnik.service';
 import { Korisnik } from '../home/korisnik';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pacijent',
@@ -10,19 +11,28 @@ import { Korisnik } from '../home/korisnik';
 })
 export class PacijentComponent implements OnInit {
   @Input() korisnik: Korisnik
-  updatePacijent :boolean;
+  updatePacijent: boolean;
 
-  constructor(private korisnikService: KorisnikService) { }
+  constructor(private router: Router, private korisnikService: KorisnikService) { }
 
   ngOnInit() {
-    this.updatePacijent=false;
-    
+    this.updatePacijent = false;
+
 
   }
 
-  onUpdatePacijent(){
-    this.updatePacijent=!this.updatePacijent;
+  onUpdatePacijent() {
+    this.updatePacijent = !this.updatePacijent;
     // window.location.reload();
 
   }
+
+  onGoToKarton() {
+
+    this.router.navigate(['/karton']);
+  }
+
+
+
+
 }

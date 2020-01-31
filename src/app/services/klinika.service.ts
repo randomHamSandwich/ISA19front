@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { KlinikFilter } from '../klinika-list/klinika-filter';
-import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'

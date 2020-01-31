@@ -10,9 +10,10 @@ import { PacijentComponent} from './pacijent/pacijent.component';
 import { KlinikaListComponent} from './klinika-list/klinika-list.component';
 // import { PacijentUpdateComponent } from './pacijent-update/pacijent-update.component';
 import { LekarListComponent } from'./lekar-list/lekar-list.component';
-import { PregledListComponent } from'./pregled-list/pregled-list.component'
-import { OperacijaListComponent} from './operacija-list/operacija-list.component'
-import { BrziPreglediListComponent } from './brzi-pregledi-list/brzi-pregledi-list.component'
+import { PregledListComponent } from'./pregled-list/pregled-list.component';
+import { OperacijaListComponent} from './operacija-list/operacija-list.component';
+import { BrziPreglediListComponent } from './brzi-pregledi-list/brzi-pregledi-list.component';
+import { KartonComponent} from  './karton/karton.component';
 
 const routes: Routes = [
     {
@@ -71,6 +72,12 @@ const routes: Routes = [
         component: BrziPreglediListComponent
 
     },
+    {
+        path: 'karton',
+        component: KartonComponent
+
+    },
+    
     
     {
         path: '',

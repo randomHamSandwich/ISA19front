@@ -17,6 +17,13 @@ export class PregledService {
         return this.http.get(this.pregledUrl + '/izvrseni', { params });
     }
 
+    public getBolesti(idKorisnik): Observable<any> {
+
+        const params = new HttpParams().set('idKorisnik', idKorisnik);
+        return this.http.get(this.pregledUrl + '/bolesti', { params });
+    }
+    
+
     public getPreglediZakazani(idKorisnik): Observable<any> {
         const params = new HttpParams().set('idKorisnik', idKorisnik);
         return this.http.get(this.pregledUrl + '/zakazani', { params })
@@ -46,5 +53,7 @@ export class PregledService {
     public oceniLekara(value: any) {
         return this.http.put(this.pregledUrl + '/oceniLekara', value);
     }
+
+    
 
 }

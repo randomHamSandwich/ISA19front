@@ -1,4 +1,4 @@
-<p>pacijent works!</p>
+<!-- <p>pacijent works!</p> -->
 
 <div *ngIf="korisnik; else noInfo">
     <!-- <div> -->
@@ -6,8 +6,9 @@
     <div *ngIf="!updatePacijent; else updatePacijentTemplate">
 
         <!-- <a href="pacijentupdate" class="btn btn-success">Update your information</a> -->
-        <button class="btn btn-success" (click)="onUpdatePacijent()">Update your information</button>
+        <button class="btn btn-success" (click)="onUpdatePacijent()">Promenite svoje podatke</button>
 
+        <button (click)="onGoToKarton()" class="btn btn-info">Moj Karton</button>
 
         <p>Ime: {{korisnik.ime}}</p>
         <p>Prezime: {{korisnik.prezime}}</p>
