@@ -6,6 +6,7 @@ import { Lekar } from './lekar';
   templateUrl: './lekar.component.html',
   styleUrls: ['./lekar.component.css']
 })
+// @Depricated
 export class LekarComponent implements OnInit {
   
   @Input() lekar: Lekar;

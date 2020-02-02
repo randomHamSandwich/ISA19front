@@ -11,6 +11,7 @@ import { TokenStorageService } from '../auth/token-storage.service';
 import { DateFormatter } from 'ngx-bootstrap/datepicker/public_api';
 import { formatDate } from '@angular/common';
 import { PregledService } from '../services/pregledService';
+import { LekarFilterDodatni } from './leka-filter-dodatni';
 // import { formatDate } from 'ngx-bootstrap/chronos/format';
 
 @Component({
@@ -24,6 +25,7 @@ export class LekarListComponent implements OnInit {
   isBtnDisabled = [];
   lekari: Observable<Lekar[]>;
   lekarFilter: KlinikFilter;
+  lekarFilterDodatni: LekarFilterDodatni;
   form: any = {};
   unesi: any = {};
   // slobodniTermini: any;
@@ -61,6 +63,7 @@ export class LekarListComponent implements OnInit {
 
     };
     this.isRezervise = false;
+    this.lekarFilterDodatni = new LekarFilterDodatni('', '', '', '');
     // this.zaRezervisanje= new Object();
     // this.zaRezervisanje.termin="";
 
@@ -79,21 +82,71 @@ export class LekarListComponent implements OnInit {
     this.reloadData();
   }
   reloadData() {
-    //jedan servis radi u zavisnosti dali ima parametre dobaflja klinike
-    // this.lekari = this.korisnikService.getLekariKlinike(idKlinika, 'NEUROLOGIJA');
 
-    this.lekari = this.korisnikService.getLekariKlinike(this.idKlinika, this.lekarFilter.spec, this.lekarFilter.date);
+
+    this.lekari = this.korisnikService.getLekariKlinike(this.idKlinika, this.lekarFilter.spec, this.lekarFilter.date, this.lekarFilterDodatni);
 
   }
 
   onSubmit() {
     console.log(this.form);
+    if (this.form.ocenaMAX != null &&
+      this.form.ocenaMIN != null &&
+      this.form.ime != null &&
+      this.form.prezime != null) {
+      this.lekarFilterDodatni = new LekarFilterDodatni(this.form.ocenaMIN, this.form.ocenaMAX, this.form.ime, this.form.prezime);
+    }
+    else if (this.form.ocenaMAX != null &&
+      this.form.ocenaMIN != null &&
+      this.form.ime != null &&
+      this.form.prezime == null) {
+      this.lekarFilterDodatni = new LekarFilterDodatni(this.form.ocenaMIN, this.form.ocenaMAX, this.form.ime, '');
+
+    }
+    else if (this.form.ocenaMAX != null &&
+      this.form.ocenaMIN != null &&
+      this.form.ime == null &&
+      this.form.prezime != null) {
+      this.lekarFilterDodatni = new LekarFilterDodatni(this.form.ocenaMIN, this.form.ocenaMAX, '', this.form.prezime);
+
+    }
+    else if (this.form.ocenaMAX != null &&
+      this.form.ocenaMIN != null &&
+      this.form.ime == null &&
+      this.form.prezime == null) {
+      this.lekarFilterDodatni = new LekarFilterDodatni(this.form.ocenaMIN, this.form.ocenaMAX, '', '');
+
+    }
+    else if ((this.form.ocenaMAX == null ||
+      this.form.ocenaMIN == null) &&
+      this.form.ime != null &&
+      this.form.prezime != null) {
+      this.lekarFilterDodatni = new LekarFilterDodatni('', '', this.form.ime, this.form.prezime);
+
+    }
+
+    else if ((this.form.ocenaMAX == null ||
+      this.form.ocenaMIN == null) &&
+      this.form.ime != null &&
+      this.form.prezime == null) {
+      this.lekarFilterDodatni = new LekarFilterDodatni('', '', this.form.ime, '');
+
+    }
+    else if ((this.form.ocenaMAX == null ||
+      this.form.ocenaMIN == null) &&
+      this.form.ime == null &&
+      this.form.prezime != null) {
+      this.lekarFilterDodatni = new LekarFilterDodatni('', '', '', this.form.prezime);
+
+    } else {
+      this.lekarFilterDodatni = new LekarFilterDodatni('', '', '', '');
+    }
 
     this.lekarFilter = new KlinikFilter(this.form.spec, this.form.date);
     console.log(this.lekarFilter);
     console.log(this.lekarFilter.date.toString());
 
-    this.lekari = this.korisnikService.getLekariKlinike(this.idKlinika, this.lekarFilter.spec, this.lekarFilter.date);
+    this.lekari = this.korisnikService.getLekariKlinike(this.idKlinika, this.lekarFilter.spec, this.lekarFilter.date, this.lekarFilterDodatni);
     // this.isBtnDisabled = true;
 
   }

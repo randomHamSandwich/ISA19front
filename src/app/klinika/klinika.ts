@@ -7,4 +7,5 @@ export class Klinika {
     drzava: string;
     opis: string;
     ocenaKlinike: number;
+    cena: number;
 }
