@@ -7,6 +7,7 @@ import { Specialization } from './specialization';
 import { KlinikFilter } from './klinika-filter';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { KlinikFilterDodatni } from './klinika-filter-dodatni';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-klinika-list',
@@ -34,9 +35,18 @@ export class KlinikaListComponent implements OnInit {
     { id: 3, name: 'INFEKTOLOGIJA' }
 
   ]
+      //sorting
+      key: string = 'name'; //set default
+      reverse: boolean = false;
+      sort(key){
+        this.key = key;
+        this.reverse = !this.reverse;
+      }
+  
 
 
-  constructor(private klinikaService: KlinikaService, private token: TokenStorageService, private korisnikService: KorisnikService) { }
+  p: number = 1;
+  constructor(private router: Router, private klinikaService: KlinikaService, private token: TokenStorageService, private korisnikService: KorisnikService) { }
 
   ngOnInit() {
     this.info = {
@@ -101,6 +111,22 @@ export class KlinikaListComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  isKlinikaFilterNull(): boolean {
+    if( this.klinikaFilter == null){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  onToLekari(idKlinika){
+   if (this.klinikaFilter== null ) {
+      this.router.navigate(['/lekarlist' ,{idKlinika: idKlinika}]);
+    }
+    else { this.router.navigate(['/lekarlist', {idKlinika: idKlinika, spec: this.klinikaFilter.spec, date: this.klinikaFilter.date }]);
+   }
   }
 
 

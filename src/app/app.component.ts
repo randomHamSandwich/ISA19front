@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './auth/token-storage.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,6 +10,7 @@ import { TokenStorageService } from './auth/token-storage.service';
 export class AppComponent implements OnInit {
   private roles: string[];
   private authority: string;
+  
 
   constructor(private tokenStorage: TokenStorageService) { }
 
@@ -16,6 +18,7 @@ export class AppComponent implements OnInit {
     this.tokenStorage.signOut();
     window.location.reload();
   }
+  
 
   ngOnInit() {
     if (this.tokenStorage.getToken()) {

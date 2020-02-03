@@ -49,6 +49,15 @@ export class LekarListComponent implements OnInit {
   ]
   minDate: Date;
 
+      //sorting
+      key: string = 'name'; //set default
+      reverse: boolean = false;
+      sort(key){
+        this.key = key;
+        this.reverse = !this.reverse;
+      }
+  
+
 
   //   When subscribing to an observable in a component, you almost always arrange to unsubscribe when the component is destroyed.
   // There are a few exceptional observables where this is not necessary. The ActivatedRoute observables are among the exceptions.

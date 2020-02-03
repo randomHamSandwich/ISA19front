@@ -26,7 +26,8 @@ export class KlinikaComponent implements OnInit {
     if (this.klinikaFilter== null ) {
       this.router.navigate(['/lekarlist' ,{idKlinika: this.klinika.idKlinika}]);
     }
-    else { this.router.navigate(['/lekarlist', {idKlinika: this.klinika.idKlinika, spec: this.klinikaFilter.spec, date: this.klinikaFilter.date }]); }
+    else { this.router.navigate(['/lekarlist', {idKlinika: this.klinika.idKlinika, spec: this.klinikaFilter.spec, date: this.klinikaFilter.date }]);
+   }
 
   }
 

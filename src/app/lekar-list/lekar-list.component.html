@@ -79,6 +79,8 @@
       </div><!-- row -->
 
       <br>
+
+ 
       <div class="form-group">
         <button class="btn btn-primary">Pretrazi</button>
 
@@ -88,27 +90,51 @@
 
 
 
-
+    <input class="form-control" type="text" name="search" [(ngModel)]="filter">   
     <table class="table table-dark">
       <thead>
+
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Ime</th>
-          <th scope="col">Prezime</th>
-          <th scope="col">Specijalaizacija</th>
-          <th scope="col">Klinika</th>
-          <th scope="col">Ocena Lekar</th>
-          <th scope="col">Cena</th>
+          
+          <th (click)="sort('ime')">Ime
+            <span class="glyphicon sort-icon" *ngIf="key =='ime'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+
+          <th (click)="sort('prezime')">Prezime
+            <span class="glyphicon sort-icon" *ngIf="key =='prezime'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          
+          <th (click)="sort('specijalizacija')">Specijalaizacija
+            <span class="glyphicon sort-icon" *ngIf="key =='specijalizacija'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+
+          <th (click)="sort('klinikaNaziv')">Klinika
+            <span class="glyphicon sort-icon" *ngIf="key =='klinikaNaziv'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+
+          <th (click)="sort('ocenaLekar')">Ocena Lekar
+            <span class="glyphicon sort-icon" *ngIf="key =='ocenaLekar'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+          <th (click)="sort('cena')">Cena
+            <span class="glyphicon sort-icon" *ngIf="key =='cena'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+          </th>
+
+
+
+          <!-- <th scope="col">Cena</th> -->
           <th scope=col>Vreme od &nbsp; &nbsp; do</th>
           <th></th>
         </tr>
       </thead>
 
-      <tbody *ngFor="let lekar of lekari | async; let i = index;">
+          
+      <tbody *ngFor="let lekar of lekari | async | orderBy: key : reverse  | filter:filter | paginate: { itemsPerPage: 5, currentPage: p }; let i = index;">
 
 
+        
         <tr class="info">
-          <th scope="row">0</th>
+          <th scope="row">{{i+1}}</th>
           <td class="table-secondar">{{lekar.ime}}</td>
           <td>{{lekar.prezime}}</td>
           <td>{{lekar.specijalizacija}}</td>
@@ -136,6 +162,7 @@
       </tbody>
 
     </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
   </div>
   <ng-template #rezervise>
@@ -147,7 +174,7 @@
           Lekar:
         </div>
         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 bg-info">
-          <span class="pull-left"> {{zaRezervisanje.izabraniLekar.ime}} {{zaRezervisanje.izabraniLekar.ime}}</span>
+          <span class="pull-left"> {{zaRezervisanje.izabraniLekar.ime}} {{zaRezervisanje.izabraniLekar.prezime}}</span>
         </div>
       </div>
     </div>
@@ -194,10 +221,14 @@
           Lokacija:
         </div>
         <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 bg-info">
-          <span class="pull-left"> STAVI U DTO LOKACIJU </span>
+          <span class="pull-left"> {{zaRezervisanje.izabraniLekar.klinikaGrad}} 
+            {{zaRezervisanje.izabraniLekar.klinikaUlica}} 
+            {{zaRezervisanje.izabraniLekar.klinikaBrojUlice}} </span>
         </div>
       </div>
     </div>
+
+
 
     <div class="container">
       <div class="row">

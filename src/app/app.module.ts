@@ -26,6 +26,9 @@ import { PregledListComponent } from './pregled-list/pregled-list.component';
 import { OperacijaListComponent } from './operacija-list/operacija-list.component';
 import { BrziPreglediListComponent } from './brzi-pregledi-list/brzi-pregledi-list.component';
 import { KartonComponent } from './karton/karton.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -58,7 +61,10 @@ import { KartonComponent } from './karton/karton.component';
     FormsModule,
     HttpClientModule,
     BsDatepickerModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2SearchPipeModule, 
+    Ng2OrderModule,
+    NgxPaginationModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
