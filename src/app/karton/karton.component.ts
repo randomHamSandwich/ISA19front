@@ -5,6 +5,8 @@ import { KartonService } from '../services/kartonService';
 import { Observable } from 'rxjs';
 import { PregledService } from '../services/pregledService';
 import { Pregled } from '../pregled-list/pregled';
+import { Alergija } from './alergija';
+import { LekService } from '../services/lek.service';
 
 @Component({
   selector: 'app-karton',
@@ -22,8 +24,10 @@ export class KartonComponent implements OnInit {
   // karton: Observable<Karton>;
   karton: Karton;
   pregledIstorijaBolesti: Observable<Pregled>;
+  alergije: Observable<Alergija>;
+  sviPregledi :Observable<Pregled>;
 
-  constructor(private token: TokenStorageService,private pregledService: PregledService, private kartonService: KartonService) { }
+  constructor(private token: TokenStorageService,private pregledService: PregledService, private kartonService: KartonService , private lekService : LekService) { }
 
   ngOnInit() {
 
@@ -37,18 +41,13 @@ export class KartonComponent implements OnInit {
     this.reloadData();
   }
 
-  // reloadData() {
-  //   console.log("xxxxxxxxxxxxxxxxxxxxxxx" + this.info.idKorisnik)
-  //   this.karton =this.kartonService.getKarton(this.info.idKorisnik);
-
-  // }
-
 
   reloadData() {
     this.karton = new Karton();
     this.kartonService.getKarton(this.info.idKorisnik).subscribe(karton => this.karton = karton);
     this.pregledIstorijaBolesti = this.pregledService.getBolesti(this.info.idKorisnik);
-
+    this.alergije=this.lekService.getAlergije(this.info.idKorisnik);
+    this.sviPregledi = this.pregledService.getPregled(this.info.idKorisnik);
   }
 
 

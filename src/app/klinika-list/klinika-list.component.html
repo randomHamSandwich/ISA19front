@@ -128,16 +128,12 @@
 
       </tr>
     </thead>
-    <!-- <tr *ngFor="let game of games | filter:filter; let i = index"> -->
-    <!-- | orderBy: key : reverse -->
-    <!-- <tr *ngFor="let game of games | orderBy: key : reverse | filter:filter; let i = index"> -->
-
 
     <tbody *ngFor="let klinika of klinike | async | orderBy: key : reverse  | filter:filter  | paginate: { itemsPerPage: 8, currentPage: p }; let i = index;">
 
 
 
-      <tr class="info">
+      <tr class="success">
         <th scope="row">{{i+1}}</th>
         <td>{{klinika.naziv}}</td>
         <td>{{klinika.ocenaKlinike}}</td>
@@ -149,7 +145,7 @@
         <th *ngIf="!isKlinikaFilterNull()">{{klinika.cena}}</th>
 
         <td>
-          <button class="btn btn-info" (click)="onToLekari(klinika.idKlinika)">
+          <button class="btn btn-success" (click)="onToLekari(klinika.idKlinika)">
             Zakazi pregled 
           </button>
 
@@ -180,8 +176,8 @@
 
     <app-klinika [klinika]='klinika' [klinikaFilter]='klinikaFilter'></app-klinika>
 
-  </div>
- -->
+  </div> -->
+
 
 </div>
 

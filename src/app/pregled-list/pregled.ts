@@ -19,6 +19,11 @@ export class Pregled {
     ulicaKlinike: string;
     brojUliceKlinike: string;
 
+    ocenaLekaraZaBrzoZakazivanje: number;
+    ocenaKlinikeZaBrzoZakazivanje: number;
+
+    salaNaziv: String;
+
     constructor(idPregleda: number,
         vremePocetka: string,
         vremeZavrsetka: string,
@@ -34,7 +39,10 @@ export class Pregled {
         nazivKlinike: string,
         gradKlionike: string,
         ulicaKlinike: string,
-        brojUliceKlinike: string) {
+        brojUliceKlinike: string,
+        ocenaLekaraZaBrzoZakazivanje: number,
+        ocenaKlinikeZaBrzoZakazivanje: number,
+        salaNaziv: string) {
         this.idPregleda = idPregleda;
         this.vremePocetka = vremePocetka;
         this.vremeZavrsetka = vremeZavrsetka;
@@ -52,6 +60,11 @@ export class Pregled {
         this.gradKlionike = gradKlionike;
         this.ulicaKlinike = ulicaKlinike;
         this.brojUliceKlinike = brojUliceKlinike;
+
+        this.ocenaLekaraZaBrzoZakazivanje= ocenaLekaraZaBrzoZakazivanje;
+        this.ocenaKlinikeZaBrzoZakazivanje= ocenaKlinikeZaBrzoZakazivanje;
+
+        this.salaNaziv= salaNaziv;
     }
 
 }

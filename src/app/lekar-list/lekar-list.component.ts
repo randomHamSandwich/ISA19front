@@ -33,6 +33,7 @@ export class LekarListComponent implements OnInit {
   idKlinika: string;
   isRezervise: boolean;
   zaRezervisanje: { izabraniLekar: Lekar, izabraniTermin: string }
+  p: number = 1;
 
   info: {
     token: any;

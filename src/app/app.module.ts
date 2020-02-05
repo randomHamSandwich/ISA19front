@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { UserComponent } from './user/user.component';
+// import { UserComponent } from './user/user.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
@@ -32,11 +32,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    UserComponent,
+    // UserComponent,
     RegisterComponent,
     HomeComponent,
     AdminComponent,

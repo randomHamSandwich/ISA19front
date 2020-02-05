@@ -19,6 +19,7 @@
                     <th scope="col">Cena</th>
                     <th scope=col>Termin</th>
                     <th scope="col">Lokacija</th>
+                    <th scope="col">Sala</th>
                     <th></th>
               </tr>
         </thead>
@@ -28,11 +29,12 @@
                     <td>{{pregled.imeLekara}} {{pregled.prezimeLekara}}</td>
                     <td>{{pregled.specijalizacija}}</td>
                     <td>{{pregled.nazivKlinike}}</td>
-                    <td>{{pregled.ocenaLekar}}</td>
-                    <td>{{pregled.ocenaKilinike}}</td>
+                    <td>{{pregled.ocenaLekaraZaBrzoZakazivanje}}</td>
+                    <td>{{pregled.ocenaKlinikeZaBrzoZakazivanje}}</td>
                     <td>{{pregled.cenaSaPopustom}}</td>
                     <td>{{pregled.vremePocetka}}</td>
                     <td>{{pregled.gradKlionike}} {{pregled.ulicaKlinike}} {{pregled.brojUliceKlinike}}</td>
+                    <td>{{pregled.salaNaziv}}</td>
                     <td> <button  class="btn btn-info" (click)= "onZakaziBrziTermin(pregled)" >Zakazi</button> </td>
               </tr>
   
