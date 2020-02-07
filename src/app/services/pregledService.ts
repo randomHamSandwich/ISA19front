@@ -28,9 +28,10 @@ export class PregledService {
         const params = new HttpParams().set('idKorisnik', idKorisnik);
         return this.http.get(this.pregledUrl + '/zakazani', { params })
     }
-
-    public getBrziPregledi() : Observable<any>{
-        return this.http.get(this.pregledUrl+'/brzi');
+// nece biti globalni nego zatrazi za svaku kliniku, po specifikaciji
+    public getBrziPregledi(idKlinika :any) : Observable<any>{
+        const params = new HttpParams().set('idKlinika', idKlinika);
+        return this.http.get(this.pregledUrl+'/brzi', { params });
     }
 // rezervisi
     public zakaziPregled(value: any) {

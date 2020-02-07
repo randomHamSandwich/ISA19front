@@ -3,6 +3,7 @@ import { TokenStorageService } from '../auth/token-storage.service';
 import { Observable } from 'rxjs';
 import { Pregled } from '../pregled-list/pregled';
 import { PregledService } from '../services/pregledService';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-brzi-pregledi-list',
@@ -19,9 +20,11 @@ export class BrziPreglediListComponent implements OnInit {
     idKorisnik: any
   }
 
+  idKlinika : string;
   brziPregledi: Observable<Pregled[]>;
 
-  constructor(private token: TokenStorageService,private  pregledService : PregledService) { }
+  constructor(private token: TokenStorageService,private  pregledService : PregledService
+    , private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.info = {
@@ -32,11 +35,15 @@ export class BrziPreglediListComponent implements OnInit {
       
     };
 
+    this.route.paramMap.subscribe(params => {
+      this.idKlinika = params.get("idKlinika");
+    })
+
     this.reloadData();
   }
 
   reloadData() {
-    this.brziPregledi = this.pregledService.getBrziPregledi();
+    this.brziPregledi = this.pregledService.getBrziPregledi(this.idKlinika);
 
   }
 

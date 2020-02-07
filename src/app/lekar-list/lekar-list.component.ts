@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Klinika } from '../klinika/klinika';
 import { Observable } from 'rxjs';
 import { KorisnikService } from '../services/korisnik.service';
@@ -62,7 +62,8 @@ export class LekarListComponent implements OnInit {
 
   //   When subscribing to an observable in a component, you almost always arrange to unsubscribe when the component is destroyed.
   // There are a few exceptional observables where this is not necessary. The ActivatedRoute observables are among the exceptions.
-  constructor(private token: TokenStorageService, private korisnikService: KorisnikService, private pregledService: PregledService, private route: ActivatedRoute) { }
+  constructor(private token: TokenStorageService, private router: Router, private korisnikService: KorisnikService, 
+    private pregledService: PregledService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.info = {
@@ -194,6 +195,14 @@ export class LekarListComponent implements OnInit {
       this.isBtnDisabled[index] = true;
     }
   }
+
+  onToBrziPregledi(){
+
+      //  this.router.navigate(['/lekarlist' ,{idKlinika: idKlinika}]);
+
+ this.router.navigate(['/brzipregledi', {idKlinika: this.idKlinika}]);
+ 
+   }
 
   isPacijent(): boolean {
     if (this.info.authorities.includes("PACIJENT")) {
