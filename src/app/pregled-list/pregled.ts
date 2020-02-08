@@ -1,3 +1,5 @@
+import { NumberValueAccessor } from '@angular/forms';
+
 export class Pregled {
 
     idPregleda: number;
@@ -24,6 +26,8 @@ export class Pregled {
 
     salaNaziv: String;
 
+    cenaBezPopusta: number;
+
     constructor(idPregleda: number,
         vremePocetka: string,
         vremeZavrsetka: string,
@@ -42,7 +46,8 @@ export class Pregled {
         brojUliceKlinike: string,
         ocenaLekaraZaBrzoZakazivanje: number,
         ocenaKlinikeZaBrzoZakazivanje: number,
-        salaNaziv: string) {
+        salaNaziv: string,
+        cenaBezPopusta: number) {
         this.idPregleda = idPregleda;
         this.vremePocetka = vremePocetka;
         this.vremeZavrsetka = vremeZavrsetka;
@@ -65,6 +70,8 @@ export class Pregled {
         this.ocenaKlinikeZaBrzoZakazivanje= ocenaKlinikeZaBrzoZakazivanje;
 
         this.salaNaziv= salaNaziv;
+
+        this.cenaBezPopusta = cenaBezPopusta;
     }
 
 }
