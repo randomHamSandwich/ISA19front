@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BrziPreglediListComponent implements OnInit {
 
-
+// 
   info: {
     token: any;
     username: any;
