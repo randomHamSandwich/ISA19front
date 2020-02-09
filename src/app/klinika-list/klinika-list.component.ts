@@ -36,7 +36,7 @@ export class KlinikaListComponent implements OnInit {
 
   ]
       //sorting
-      key: string = 'name'; //set default
+      key: string = 'naziv'; //set default
       reverse: boolean = false;
       sort(key){
         this.key = key;

@@ -24,10 +24,19 @@ export class PregledListComponent implements OnInit {
   pregledi: Observable<Pregled[]>;
   preglediZakazani: Observable<Pregled[]>;
   isPriazIstorijaPregleda: boolean;
-  isOcenaLekar =[];
-  isOcenaKlina =[];
-  oceneLekara =[];
-  oceneKlinia =[];
+  isOcenaLekar = [];
+  isOcenaKlina = [];
+  oceneLekara = [];
+  oceneKlinia = [];
+
+  //sorting
+  key: string = 'vremePocetka'; //set default
+  reverse: boolean = false;
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+  
 
   constructor(private token: TokenStorageService, private pregledService: PregledService, private operacijaService: OperacijaService) { }
 
@@ -83,7 +92,7 @@ export class PregledListComponent implements OnInit {
     this.isPriazIstorijaPregleda = !this.isPriazIstorijaPregleda;
   }
 
-  onOceniLekara(pregled: Pregled, ocena : number) {
+  onOceniLekara(pregled: Pregled, ocena: number) {
     this.pregledService.oceniLekara(
       {
         "idPregleda": pregled.idPregleda,
@@ -91,23 +100,26 @@ export class PregledListComponent implements OnInit {
         "idLekara": pregled.idLekara
       }
     ).subscribe();
+    window.location.reload();
 
   }
 
-  onOceniKliniku(pregled: Pregled, ocena : number) {
+  onOceniKliniku(pregled: Pregled, ocena: number) {
     this.pregledService.oceniKliniku(
       {
         "idPregleda": pregled.idPregleda,
         "ocenaKilinike": ocena,
         "idLekara": pregled.idLekara
-    
+
       }
     ).subscribe();
-
+    window.location.reload();
   }
-  onOcenaLekaraChange(ocena:number,index: number ){ this.isOcenaLekar[index]= true;
-  console.log(index)}
-  onOcenaKlinikeChange(ocena:number, index: number){ this.isOcenaKlina[index]= true ;      console.log(index)}
+  onOcenaLekaraChange(ocena: number, index: number) {
+  this.isOcenaLekar[index] = true;
+    console.log(index)
+  }
+  onOcenaKlinikeChange(ocena: number, index: number) { this.isOcenaKlina[index] = true; console.log(index) }
 
 
 

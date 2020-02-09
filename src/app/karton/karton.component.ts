@@ -7,6 +7,8 @@ import { PregledService } from '../services/pregledService';
 import { Pregled } from '../pregled-list/pregled';
 import { Alergija } from './alergija';
 import { LekService } from '../services/lek.service';
+import { Operacija } from '../operacija-list/operacija';
+import { OperacijaService } from '../services/operacijaService';
 
 @Component({
   selector: 'app-karton',
@@ -25,9 +27,12 @@ export class KartonComponent implements OnInit {
   karton: Karton;
   pregledIstorijaBolesti: Observable<Pregled>;
   alergije: Observable<Alergija>;
+  // lose ime ne sve nego izvrsene jer treba da se 
+  //belezi svaka poseta lekaru
   sviPregledi :Observable<Pregled>;
+  sveOperacije: Observable<Operacija[]>;
 
-  constructor(private token: TokenStorageService,private pregledService: PregledService, private kartonService: KartonService , private lekService : LekService) { }
+  constructor(private token: TokenStorageService, private operacijaService: OperacijaService, private pregledService: PregledService, private kartonService: KartonService , private lekService : LekService) { }
 
   ngOnInit() {
 
@@ -48,6 +53,7 @@ export class KartonComponent implements OnInit {
     this.pregledIstorijaBolesti = this.pregledService.getBolesti(this.info.idKorisnik);
     this.alergije=this.lekService.getAlergije(this.info.idKorisnik);
     this.sviPregledi = this.pregledService.getPregled(this.info.idKorisnik);
+    this.sveOperacije = this.operacijaService.getOperacije(this.info.idKorisnik)
   }
 
 

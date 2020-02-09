@@ -2,26 +2,48 @@
 
 
       <div *ngIf="isPriazIstorijaPregleda; else zakazaniPreglediTempalte">
-            <button class="btn btn-success" (click)="onChangePrikaz()">Istorija pregleda</button>
+            <button class="btn btn-success" (click)="onChangePrikaz()">Zakazani pregledi</button>
             <br>
             <h3>Moja istorija pregleda</h3>
             <table class="table table-dark">
                   <thead>
                         <tr>
                               <th scope="col">#</th>
-                              <th scope="col">Datum</th>
-                              <th scope="col">Lekar</th>
-                              <th scope="col">Klinika</th>
-                              <th scope="col">Dijagnoza</th>
-                              <th scope="col">Specijalaizacija</th>
-                              <th scope="col">Ocena lekara</th>
-                              <th scope="col">Ocenak ilinike</th>
+
+                              <th (click)="sort('vremePocetka')">Datum
+                                    <span class="glyphicon sort-icon" *ngIf="key =='vremePocetka'"
+                                     [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                              </th>
+                              <th (click)="sort('imeLekara')">Lekar
+                                    <span class="glyphicon sort-icon" *ngIf="key =='imeLekara'"
+                                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                              </th>
+                              <th (click)="sort('nazivKlinike')">Klinika
+                                    <span class="glyphicon sort-icon" *ngIf="key =='nazivKlinike'"
+                                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                              </th>
+                              <th (click)="sort('dijagnoza')">Dijagnoza
+                                    <span class="glyphicon sort-icon" *ngIf="key =='dijagnoza'"
+                                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                              </th>
+                              <th (click)="sort('specijalizacija')">Specijalaizacija
+                                    <span class="glyphicon sort-icon" *ngIf="key =='specijalizacija'"
+                                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                              </th>
+                              <th (click)="sort('ocenaLekara')">Ocena lekara
+                                    <span class="glyphicon sort-icon" *ngIf="key =='ocenaLekara'"
+                                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                              </th>
+                              <th (click)="sort('ocenaKilinike')">Ocenak ilinike
+                                    <span class="glyphicon sort-icon" *ngIf="key =='ocenaKilinike'"
+                                    [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                              </th>
                               <th></th>
                               <!-- <th></th> -->
                         </tr>
                   </thead>
 
-                  <tbody *ngFor="let pregled of pregledi | async; let i = index;">
+                  <tbody *ngFor="let pregled of pregledi | async | orderBy: key : reverse ; let i = index;">
 
 
                         <tr class="info">
@@ -81,7 +103,7 @@
             </table>
       </div>
       <ng-template #zakazaniPreglediTempalte>
-            <button class="btn btn-success" (click)="onChangePrikaz()">Zakazani pregledi</button>
+            <button class="btn btn-success" (click)="onChangePrikaz()">Istorija pregleda</button>
 
             <h3>Moji zakazani pregledi</h3>
             <p class="alert alert-warning">Otkaz zakazanih pregleda je moguc najkasnije 24 sata pre poceta istog</p>
@@ -95,7 +117,7 @@
                               <th scope="col">Klinika</th>
                               <th scope="col">Lokacija</th>
                               <th></th>
-                              <!-- <th></th> -->
+
                         </tr>
                   </thead>
 

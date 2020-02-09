@@ -9,7 +9,10 @@
         <button class="btn btn-success" (click)="onUpdatePacijent()">Promenite svoje podatke</button>
 
         <button (click)="onGoToKarton()" class="btn btn-info">Moj Karton</button>
-
+        <button class="btn btn-info" (click)="onToGoToKlinikaList()"> Klinike </button> 
+        <button class="btn btn-info" (click)="onToGoToPregledi()"> Istorija pregleda </button> 
+        <button class="btn btn-info" (click)="onToGoToOperacije()"> Istorija operacija </button> 
+<br> <br>
         <p>Ime: {{korisnik.ime}}</p>
         <p>Prezime: {{korisnik.prezime}}</p>
         <p>Ulica: {{korisnik.ulica}}</p>
@@ -34,5 +37,5 @@
 
 
 <ng-template #noInfo>
-    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    <!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
 </ng-template>

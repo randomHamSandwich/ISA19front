@@ -48,18 +48,18 @@ export class KlinikaService {
     } else {
   // console.log(lokacijaFilter +" "+ ocenaKlinikaFilter + filter.date );
   console.log("-----------------eeeeeeeeeeelse vati apsolutno sve___________  " +filter + " "+ filter.spec + filter.date);
-  console.log(filter != null  );
-  console.log( filter.spec != null);
-  console.log(filter.date != null);
-  console.log(filter.spec.length != 0);
-  console.log(filter.date.length);
-  console.log( filter.spec != ' ');
-  console.log(filter.date != '');
-  console.log(filter.date);
-  console.log(filter.spec);
-  console.log(filterDodatni.lokacija);
-  console.log(filter.date == null);
-  console.log(filterDodatni.lokacija==null);
+  // console.log(filter != null  );
+  // console.log( filter.spec != null);
+  // console.log(filter.date != null);
+  // console.log(filter.spec.length != 0);
+  // console.log(filter.date.length);
+  // console.log( filter.spec != ' ');
+  // console.log(filter.date != '');
+  // console.log(filter.date);
+  // console.log(filter.spec);
+  // console.log(filterDodatni.lokacija);
+  // console.log(filter.date == null);
+  // console.log(filterDodatni.lokacija==null);
   
   
 

@@ -3,7 +3,7 @@
 <div *ngIf="isPacijent(); else loggedOut">
 
     <div *ngIf="isPriazIstorijaOperacija; else zakazaneOperacijeTempalte">
-        <button class="btn btn-success" (click)="onChangePrikaz()">Istorija operacija</button>
+        <button class="btn btn-success" (click)="onChangePrikaz()">Zakazane operacije</button>
 
         <br>
         <h3>Moja istorija operacija</h3>
@@ -11,19 +11,33 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Datum</th>
-                    <th scope="col">Lekari</th>
-                    <th scope="col">Specijalaizacija</th>
-                    <th scope="col">Klinika</th>
-                    <th scope="col">Lokacija</th>
-                    <th scope="col">Ocena Lekara</th>
-                    <th scope="col">Ocena Kilinike</th>
+                    <th (click)="sort('vremePocetka')">Datum
+                        <span class="glyphicon sort-icon" *ngIf="key =='vremePocetka'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th (click)="sort('lekari')">Lekari
+                        <span class="glyphicon sort-icon" *ngIf="key =='lekari'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>                       
+                    </th>
+                    <th (click)="sort('specijalizacija')">Specijalaizacija
+                        <span class="glyphicon sort-icon" *ngIf="key =='specijalizacija'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>                       
+                    </th>
+                    <th (click)="sort('nazivKlinike')">Klinika
+                        <span class="glyphicon sort-icon" *ngIf="key =='nazivKlinike'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>                       
+                    </th>
+                    <th (click)="sort('gradKlionike')">Lokacija
+                        <span class="glyphicon sort-icon" *ngIf="key =='gradKlionike'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>                       
+                    </th>
+                    <th (click)="sort('ocenaLekara')">Ocena Lekara
+                        <span class="glyphicon sort-icon" *ngIf="key =='ocenaLekara'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>                       
+                    </th>
+                    <th (click)="sort('ocenaKlinke')">Ocena Kilinike
+                        <span class="glyphicon sort-icon" *ngIf="key =='ocenaKlinke'" [ngClass]="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>                       
+                    </th>
                     <th></th>
                     <!-- <th></th> -->
                 </tr>
             </thead>
 
-            <tbody *ngFor="let operacija of operacije | async; let i = index;">
+            <tbody *ngFor="let operacija of operacije | async | orderBy: key : reverse; let i = index;">
 
 
                 <tr class="info">
@@ -48,7 +62,7 @@
 
 
                     </td>
-                    <td *ngIf="isOcenjenaKlinika(operacija)">{{operacija.ocenaKilinike}}</td>
+                    <td *ngIf="isOcenjenaKlinika(operacija)">{{operacija.ocenaKlinke}}</td>
                     <td *ngIf="!isOcenjenaKlinika(operacija)">
 
                         <select name="oceneKlinia[{{i}}]" [(ngModel)]="oceneKlinia[i]"
@@ -84,7 +98,7 @@
     </div>
 
     <ng-template #zakazaneOperacijeTempalte>
-        <button class="btn btn-success" (click)="onChangePrikaz()">Zakazane operacije</button>
+        <button class="btn btn-success" (click)="onChangePrikaz()">Istorija operacija</button>
 
         <h3>Moje zakazane operacije</h3>
         <table class="table table-dark">

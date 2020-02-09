@@ -53,7 +53,7 @@
   <table class="table table-dark">
         <thead>
           <tr>
-            <th scope="col">Posete lekaru</th>
+            <th scope="col">Posete lekaru tipa pregled</th>
           </tr>
               <tr class="info">
                     <th scope="col">#</th>
@@ -78,16 +78,59 @@
                     <td>{{pregled.specijalizacija}}</td>
 
                    
-
+              </tr>
 
         </tbody>
 
   </table>
 
 
+
+
+
+  
+  <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Posete lekaru tipa operacija</th>
+        </tr>
+          <tr>
+              <th scope="col">#</th>
+              <th scope="col">Datum</th>
+              <th scope="col">Lekari</th>
+              <th scope="col">Specijalaizacija</th>
+              <th scope="col">Klinika</th>
+              <th scope="col">Lokacija</th>
+
+          </tr>
+      </thead>
+
+      <tbody *ngFor="let operacija of sveOperacije | async; let i = index;">
+
+
+          <tr class="info">
+              <th scope="row">{{i+1}}</th>
+              <td>{{operacija.vremePocetka}}</td>
+              <td>{{operacija.lekari}}</td>
+              <td>{{operacija.specijalizacija}}</td>
+              <td>{{operacija.nazivKlinike}}</td>
+              <td>{{operacija.gradKlionike}} {{operacija.ulicaKlinike}}  {{operacija.brojUliceKlinike}}</td>
+  
+          </tr>
+
+
+      </tbody>
+
+  </table>
+
+
+
+
+
+
+
   
 </div>
-
 
 <ng-template #loggedOut>
   Please login.

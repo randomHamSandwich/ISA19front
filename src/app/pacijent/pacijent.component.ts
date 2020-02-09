@@ -32,7 +32,18 @@ export class PacijentComponent implements OnInit {
     this.router.navigate(['/karton']);
   }
 
+  onToGoToKlinikaList(){
+    this.router.navigate(['/klinikalist']);
+  }
 
+  onToGoToPregledi(){
+    this.router.navigate(['/pregledlist']);
+
+  }
+
+  onToGoToOperacije(){
+    this.router.navigate(['/operacijalist']);
+  }
 
 
 }

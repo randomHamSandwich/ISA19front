@@ -55,6 +55,7 @@ export class BrziPreglediListComponent implements OnInit {
 
       }
     ).subscribe();
+    window.location.reload();
   }
 
   isPacijent() :boolean{

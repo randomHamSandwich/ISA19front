@@ -24,6 +24,13 @@ export class OperacijaListComponent implements OnInit {
   isOcenaKlina = [];
   oceneLekara = [];
   oceneKlinia = [];
+    //sorting
+    key: string = 'vremePocetka'; //set default
+    reverse: boolean = false;
+    sort(key) {
+      this.key = key;
+      this.reverse = !this.reverse;
+    }
 
   constructor(private token: TokenStorageService, private operacijaService: OperacijaService) { }
 
@@ -84,7 +91,7 @@ export class OperacijaListComponent implements OnInit {
         // "idLekara": pregled.idLekara
       }
     ).subscribe();
-
+    window.location.reload();
   }
 
   onOceniKliniku(operacija: Operacija, ocena : number) {
@@ -96,7 +103,7 @@ export class OperacijaListComponent implements OnInit {
     
       }
     ).subscribe();
-
+    window.location.reload();
   }
 
   onOcenaLekaraChange(ocena: number, index: number) { this.isOcenaLekar[index] = true; console.log(index) }

@@ -51,7 +51,7 @@ export class LekarListComponent implements OnInit {
   minDate: Date;
 
       //sorting
-      key: string = 'name'; //set default
+      key: string = 'ime'; //set default
       reverse: boolean = false;
       sort(key){
         this.key = key;
@@ -187,6 +187,7 @@ export class LekarListComponent implements OnInit {
       time: ((String(this.zaRezervisanje.izabraniTermin)).substr(0, 5)).replace(':', ' ')
     })
       .subscribe();
+      window.location.reload();
   }
 
   onTerminChange(termin: string, index: number) {
